@@ -1,12 +1,20 @@
-<div th:fragment="header">
+<div th:fragment="header" xmlns:th="http://www.w3.org/1999/xhtml">
     <div class="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 bg-white border-bottom box-shadow">
         <h5 class="my-0 mr-md-auto font-weight-normal">Hotel</h5>
         <nav class="my-2 my-md-0 mr-md-3">
             <a class="p-2 text-dark" href="/">Home</a>
-            <a class="p-2 text-dark" href="/about">About</a>
+            <a class="p-2 text-dark" th:href="@{/list_users}">List Users</a>
             <a class="p-2 text-dark" href="#">Support</a>
             <a class="p-2 text-dark" href="#">Pricing</a>
         </nav>
-        <a class="btn btn-outline-primary" href="#">Sign up</a>
+
+        <a class="btn btn-outline-primary" th:href="@{/register}">Register</a>
+<!--        <a class="btn btn-outline-danger" th:href="@{/logout}">Logout</a>-->
+
+        <form th:action="@{/logout}" id="logout-form" method="post"></form>
+        <a class="btn btn-outline-danger" onclick="document.getElementById('logout-form').submit();" href="#">Logout</a>
+
+<!--        <a class="btn btn-outline-danger" th:href="@{/logout}">Logout</a>-->
+        <a class="btn btn-outline-primary" th:href="@{/login}">Login</a>
     </div>
 </div>

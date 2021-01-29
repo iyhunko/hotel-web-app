@@ -23,3 +23,5 @@ tmp_table_size= 64M
 max_heap_table_size= 64M
 innodb_large_prefix=1
 innodb_default_row_format=DYNAMIC
+explicit_defaults_for_timestamp=1
+sql_mode=""

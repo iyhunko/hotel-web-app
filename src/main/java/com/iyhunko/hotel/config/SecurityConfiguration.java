@@ -1,5 +1,6 @@
-package com.iyhunko.hotel;
+package com.iyhunko.hotel.config;
 
+import com.iyhunko.hotel.CustomUserDetailsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -57,7 +58,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
                 .antMatchers("/list_users").authenticated()
-//                .antMatchers("/admin").hasRole("ADMIN")
+                .antMatchers("/admin").hasRole("ADMIN")
 //                .antMatchers("/user").hasAnyRole("ADMIN", "USER")
 //                .antMatchers("/").permitAll()
                 .anyRequest().permitAll()

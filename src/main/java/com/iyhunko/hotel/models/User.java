@@ -21,9 +21,6 @@ public class User {
     @Column(nullable = false, length = 64)
     private String password;
 
-    @Column(length = 150)
-    private String roles;
-
     public void setEmail(String username) {
         this.email = username;
     }
@@ -62,13 +59,5 @@ public class User {
 
     public void setPassword(String password) {
         this.password = password;
-    }
-
-    public String getRoles() {
-        return roles;
-    }
-
-    public void setRoles(String roles) {
-        this.roles = roles;
     }
 }

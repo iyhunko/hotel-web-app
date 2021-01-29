@@ -11,7 +11,7 @@ services:
       - "MYSQL_ROOT_PASSWORD=test123"
     volumes:
       - "mysql_data:/var/lib/mysql"
-      - "./docker/mariadb/mysqlInnodb.cnf:/etc/mysql/conf.d/mysqlInnodb.cnf"
-      - "./docker/mariadb/:/docker-entrypoint-initdb.d/"
+      - "./docker/mysql/mysqlInnodb.cnf:/etc/mysql/conf.d/mysqlInnodb.cnf"
+      - "./docker/mysql/:/docker-entrypoint-initdb.d/"
     ports:
       - "127.0.0.1:3307:3306"

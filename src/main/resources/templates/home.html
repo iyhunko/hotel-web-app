@@ -1,11 +1,17 @@
 <!DOCTYPE HTML>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="https://www.thymeleaf.org/thymeLeaf-extras-springsecurity5">
 <head th:insert="blocks/head :: head"></head>
 <body>
     <header th:insert="blocks/header :: header"></header>
 
-    <div class="container mt-5 text-center">
-        <h1>Welcome. This is a HOME page.</h1>
+    <div sec:authorize="isAuthenticated()" class="container mt-5 text-center">
+        <h1>Welcome <b>[[${#request.userPrincipal.principal.fullName}]]</b>.
+            Your role is: <b sec:authentication="principal.authorities">Roles</b></h1>
+    </div>
+
+    <div sec:authorize="!isAuthenticated()" class="container mt-5 text-center">
+        <h1>Welcome. Please <a href="/login">sign in</a> or <a href="/registration">sign out</a> to work with our service.</h1>
     </div>
 
     <header th:insert="blocks/footer :: footer"></header>

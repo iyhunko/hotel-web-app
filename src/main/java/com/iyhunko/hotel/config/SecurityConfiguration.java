@@ -49,27 +49,22 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
         auth.authenticationProvider(authenticationProvider());
     }
 
-//    @Bean
-//    public PasswordEncoder getPasswordEncoder() {
-//        return NoOpPasswordEncoder.getInstance();
-//    }
-
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
-                .antMatchers("/list_users").authenticated()
-                .antMatchers("/admin").hasRole("ADMIN")
-//                .antMatchers("/user").hasAnyRole("ADMIN", "USER")
-//                .antMatchers("/").permitAll()
-                .anyRequest().permitAll()
+                .antMatchers("/users*").hasAuthority("ADMIN")
+                .antMatchers("/admin*").hasAuthority("ADMIN")
+                .anyRequest().authenticated()
                 .and()
                 .formLogin()
                     .usernameParameter("email")
-                    .defaultSuccessUrl("/list_users")
+                    .defaultSuccessUrl("/")
                     .permitAll()
                 .and()
                 .logout()
-                    .logoutSuccessUrl("/")
-                    .permitAll();
+                    .logoutSuccessUrl("/login")
+                    .permitAll()
+                .and()
+                .exceptionHandling().accessDeniedPage("/403");
     }
 }

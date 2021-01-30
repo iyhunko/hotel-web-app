@@ -1,23 +1,15 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org"
       xmlns:sec="https://www.thymeleaf.org/thymeLeaf-extras-springsecurity5">
-
 <head th:insert="blocks/head :: head"></head>
-
 <body>
-
 <header th:insert="blocks/header :: header"></header>
 
 <div class="container mt-5 text-center">
-    <div>
-        <h1>You have signed up successfully!</h1>
-        <h4><a th:href="@{/login}">Click here to login</a></h4>
-    </div>
+    <h2>Sorry, you don't have permission to access this page!</h2>
 </div>
 
-
 <header th:insert="blocks/footer :: footer"></header>
-
 <scripts th:insert="blocks/scripts :: scripts"></scripts>
 </body>
 </html>

@@ -32,4 +32,9 @@ public class AuthController {
 
         return "register_success";
     }
+
+    @GetMapping("/403")
+    public String error403() {
+        return  "403";
+    }
 }

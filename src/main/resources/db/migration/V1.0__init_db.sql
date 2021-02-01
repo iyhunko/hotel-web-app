@@ -11,14 +11,14 @@ CREATE TABLE `users` (
 
 CREATE TABLE `rooms` (
   `id` BIGINT(20) UNSIGNED NOT NULL AUTO_INCREMENT,
-  `number` INT NOT NULL,
+  `number` VARCHAR(45) NOT NULL COMMENT 'type is varchar because we may have numbers like: 143-A, 13-B...',
   `title` VARCHAR(255) NOT NULL,
   `description` TEXT(2000) NULL,
-  `price` INT UNSIGNED NOT NULL,
-  `photo` TEXT(500) NOT NULL,
+  `price` FLOAT UNSIGNED NOT NULL,
+  `photo` TEXT(500) NULL,
   `floor` INT NOT NULL,
   `class` VARCHAR(45) NOT NULL,
-  `room_size` INT UNSIGNED NOT NULL,
+  `size` INT UNSIGNED NOT NULL,
   `rooms_quantity` INT UNSIGNED NOT NULL,
   `adults_quantity` INT UNSIGNED NOT NULL,
   `children_quantity` INT UNSIGNED NOT NULL,
@@ -28,17 +28,15 @@ CREATE TABLE `rooms` (
   `has_fridge` TINYINT(1) UNSIGNED NOT NULL DEFAULT 0,
   `has_balcony` TINYINT(1) UNSIGNED NOT NULL DEFAULT 0,
   `is_smoking_allowed` TINYINT(1) UNSIGNED NOT NULL DEFAULT 0,
-  `are_pets_alowed` TINYINT(1) UNSIGNED NOT NULL DEFAULT 0,
+  `are_pets_allowed` TINYINT(1) UNSIGNED NOT NULL DEFAULT 0,
   `created_at` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`));
-
-
 
 CREATE TABLE `requests` (
   `id` BIGINT(20) UNSIGNED NOT NULL AUTO_INCREMENT,
   `user_id` BIGINT(20) UNSIGNED NOT NULL,
-  `price_from` INT UNSIGNED NULL,
-  `price_to` INT UNSIGNED NULL,
+  `price_from` FLOAT UNSIGNED NULL,
+  `price_to` FLOAT UNSIGNED NULL,
   `checkin_date` TIMESTAMP NOT NULL,
   `checkout_date` TIMESTAMP NOT NULL,
   `floor` INT NOT NULL,

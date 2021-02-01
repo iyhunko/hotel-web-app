@@ -1,0 +1,70 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="https://www.thymeleaf.org/thymeLeaf-extras-springsecurity5">
+<head th:insert="blocks/head :: head"></head>
+<body>
+<header th:insert="blocks/header :: header"></header>
+
+<div class="container mt-5 text-center">
+    <div>
+        <h1>Welcome. This is USERS page.</h1>
+    </div>
+
+    <div>
+        <table class="table table-striped table-bordered">
+            <thead class="thead-dark">
+            <tr>
+                <th>ID</th>
+                <th>Number</th>
+                <th>Title</th>
+                <th>Description</th>
+                <th>Price</th>
+                <th>Photo</th>
+                <th>Floor</th>
+                <th>Class</th>
+                <th>Size</th>
+                <th>Rooms quantity</th>
+                <th>Adults quantity</th>
+                <th>Children quantity</th>
+                <th>Beds quantity</th>
+                <th>Has bar</th>
+                <th>Has tv</th>
+                <th>Has fridge</th>
+                <th>Has balcony</th>
+                <th>Is smoking allowed</th>
+                <th>Are pets allowed</th>
+                <th>Created at</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="room: ${rooms}">
+                <td th:text="${room.id}"></td>
+                <td th:text="${room.number}"></td>
+                <td th:text="${room.title}"></td>
+                <td th:text="${room.description}"></td>
+                <td th:text="${room.price}"></td>
+                <td th:text="${room.photo}"></td>
+                <td th:text="${room.floor}"></td>
+                <td th:text="${room.class}"></td>
+                <td th:text="${room.size}"></td>
+                <td th:text="${room.rooms_quantity}"></td>
+                <td th:text="${room.adults_quantity}"></td>
+                <td th:text="${room.children_quantity}"></td>
+                <td th:text="${room.beds_quantity}"></td>
+                <td th:text="${room.has_bar}"></td>
+                <td th:text="${room.has_tv}"></td>
+                <td th:text="${room.has_fridge}"></td>
+                <td th:text="${room.has_balcony}"></td>
+                <td th:text="${room.is_smoking_allowed}"></td>
+                <td th:text="${room.are_pets_allowed}"></td>
+                <td th:text="${room.created_at}"></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<header th:insert="blocks/footer :: footer"></header>
+<scripts th:insert="blocks/scripts :: scripts"></scripts>
+</body>
+</html>

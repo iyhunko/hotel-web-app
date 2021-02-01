@@ -56,10 +56,11 @@
                             <a class="btn btn-success" href="#">
                                 <i class="fa fa-fw fa-eye"></i>
                             </a>
-                            <a class="btn btn-warning" href="#">
+                            <a class="btn btn-warning" th:href="@{'/rooms/edit/' + ${room.id}}">
                                 <i class="fa fa-fw fa-edit"></i>
                             </a>
-                            <a class="btn btn-danger" href="#">
+
+                            <a class="btn btn-danger" th:href="@{'/rooms/delete/' + ${room.id}}">
                                 <i class="fa fa-fw fa-trash"></i>
                             </a>
                         </div>

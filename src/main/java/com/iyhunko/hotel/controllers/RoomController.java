@@ -6,8 +6,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.ModelAndView;
 
 import java.sql.Timestamp;
 import java.util.List;
@@ -20,13 +22,12 @@ public class RoomController {
 
     @RequestMapping(value = "/rooms/save", method = RequestMethod.POST)
     public String saveRoom(@ModelAttribute("room") Room room) {
-
         room.setPhoto("https://static.wikia.nocookie.net/zelda_gamepedia_en/images/3/35/WW_Link_3.png/revision/latest/scale-to-width-down/213");
         room.setCreatedAt(new Timestamp(System.currentTimeMillis()));
 
         service.save(room);
 
-        return "redirect:/";
+        return "redirect:/rooms";
     }
 
     @RequestMapping("/rooms")
@@ -45,5 +46,27 @@ public class RoomController {
         model.addAttribute("room", room);
 
         return "room_create";
+    }
+
+    @RequestMapping("/rooms/edit/{id}")
+    public ModelAndView showEditPage(
+            @PathVariable(name = "id") Long id
+    ) {
+        ModelAndView mav = new ModelAndView("room_edit");
+
+        Room room = service.find(id);
+
+        mav.addObject("room", room);
+
+        return mav;
+    }
+
+    @RequestMapping("/rooms/delete/{id}")
+    public String delete(
+            @PathVariable(name = "id") Long id
+    ) {
+        service.delete(id);
+
+        return "redirect:/rooms";
     }
 }

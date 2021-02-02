@@ -48,11 +48,24 @@ public class RoomController {
         return "room_create";
     }
 
-    @RequestMapping("/rooms/edit/{id}")
+    @RequestMapping("/rooms/{id}/edit")
     public ModelAndView showEditPage(
             @PathVariable(name = "id") Long id
     ) {
         ModelAndView mav = new ModelAndView("room_edit");
+
+        Room room = service.find(id);
+
+        mav.addObject("room", room);
+
+        return mav;
+    }
+
+    @RequestMapping("/rooms/{id}/details")
+    public ModelAndView showDetailsPage(
+            @PathVariable(name = "id") Long id
+    ) {
+        ModelAndView mav = new ModelAndView("room_details");
 
         Room room = service.find(id);
 

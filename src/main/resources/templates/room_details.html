@@ -1,0 +1,202 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head th:insert="blocks/head :: head"></head>
+
+<body>
+
+    <header th:insert="blocks/header :: header"></header>
+
+    <div class="container mt-5 left">
+        <div class="row">
+            <h1 class="text-center">Room Details</h1>
+        </div>
+
+        <div class="row mt-4">
+            <div class="col-4">
+                <span>Number</span>
+            </div>
+            <div class="col-8">
+                <span th:text="${room.number}"></span>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-4">
+                <span>Title</span>
+            </div>
+            <div class="col-8">
+                <span th:utext="${room.title}"></span>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-4">
+                <label>Description</label>
+            </div>
+
+            <div class="col-8">
+                <p th:utext="${room.description}"></p>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-4">
+                <label>Price</label>
+            </div>
+
+            <div class="col-8">
+                <label th:text="${room.price}"></label>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-4">
+                <label>Photo</label>
+            </div>
+
+            <div class="col-8">
+                <label>Photo displaying is not implemented yet</label>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-4">
+                <label>Floor</label>
+            </div>
+
+            <div class="col-8">
+                <label th:text="${room.floor}"></label>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-4">
+                <label>Class</label>
+            </div>
+
+            <div class="col-8">
+                <label th:text="${room.roomClass}"></label>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-4">
+                <label>Size</label>
+            </div>
+
+            <div class="col-8">
+                <label th:text="${room.size}"></label>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-4">
+                <label>Rooms Quantity</label>
+            </div>
+
+            <div class="col-8">
+                <label th:text="${room.roomsQuantity}"></label>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-4">
+                <label>Adults Quantity</label>
+            </div>
+
+            <div class="col-8">
+                <label th:text="${room.adultsQuantity}"></label>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-4">
+                <label>Children Quantity</label>
+            </div>
+
+            <div class="col-8">
+                <label th:text="${room.childrenQuantity}"></label>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-4">
+                <label>Beds Quantity</label>
+            </div>
+
+            <div class="col-8">
+                <label th:text="${room.bedsQuantity}"></label>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-4">
+                <label>Has Bar?</label>
+            </div>
+
+            <div class="col-8">
+                <label th:text="${room.hasBar}"></label>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-4">
+                <label>Has TV?</label>
+            </div>
+
+            <div class="col-8">
+                <label th:text="${room.hasTv}"></label>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-4">
+                <label>Has Fridge?</label>
+            </div>
+
+            <div class="col-8">
+                <label th:text="${room.hasFridge}"></label>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-4">
+                <label>Has Balcony?</label>
+            </div>
+
+            <div class="col-8">
+                <label th:text="${room.hasBalcony}"></label>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-4">
+                <label>Is smoking allowed?</label>
+            </div>
+
+            <div class="col-8">
+                <label th:text="${room.isSmokingAllowed}"></label>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-4">
+                <label>Are pets allowed?</label>
+            </div>
+
+            <div class="col-8">
+                <label th:text="${room.arePetsAllowed}"></label>
+            </div>
+        </div>
+
+        <div class="row d-flex justify-content-between mt-4">
+            <a class="btn btn-warning float-left" href="/rooms">BACK</a>
+            <a class="btn btn-primary float-right" th:href="@{'/rooms/' + ${room.id} + '/edit'}">EDIT</a>
+        </div>
+    </div>
+
+    <header th:insert="blocks/footer :: footer"></header>
+
+    <scripts th:insert="blocks/scripts :: scripts"></scripts>
+</body>
+</html>

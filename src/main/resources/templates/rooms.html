@@ -53,14 +53,13 @@
 
                     <td>
                         <div class="btn-group" role="group" aria-label="Actions">
-                            <a class="btn btn-success" href="#">
+                            <a class="btn btn-success" th:href="@{'/rooms/' + ${room.id} + '/details'}">
                                 <i class="fa fa-fw fa-eye"></i>
                             </a>
-                            <a class="btn btn-warning" th:href="@{'/rooms/edit/' + ${room.id}}">
+                            <a class="btn btn-warning" th:href="@{'/rooms/' + ${room.id} + '/edit'}">
                                 <i class="fa fa-fw fa-edit"></i>
                             </a>
-
-                            <a class="btn btn-danger" th:href="@{'/rooms/delete/' + ${room.id}}">
+                            <a class="btn btn-danger" th:href="@{'/rooms/' + ${room.id} + '/delete'}">
                                 <i class="fa fa-fw fa-trash"></i>
                             </a>
                         </div>

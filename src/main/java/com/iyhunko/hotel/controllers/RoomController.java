@@ -75,9 +75,7 @@ public class RoomController {
     }
 
     @RequestMapping("/rooms/delete/{id}")
-    public String delete(
-            @PathVariable(name = "id") Long id
-    ) {
+    public String delete(@PathVariable(name = "id") Long id) {
         service.delete(id);
 
         return "redirect:/rooms";

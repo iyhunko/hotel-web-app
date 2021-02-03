@@ -1,0 +1,180 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head th:insert="blocks/head :: head"></head>
+
+<body>
+
+    <header th:insert="blocks/header :: header"></header>
+
+    <div class="container mt-5 left">
+        <div class="row">
+            <h1 class="text-center">Request Details</h1>
+        </div>
+
+        <div class="row mt-4">
+            <div class="col-4">
+                <span>Price from</span>
+            </div>
+            <div class="col-8">
+                <span th:text="${request.priceFrom}"></span>
+            </div>
+        </div>
+
+        <div class="row mt-4">
+            <div class="col-4">
+                <span>Price to</span>
+            </div>
+            <div class="col-8">
+                <span th:text="${request.priceTo}"></span>
+            </div>
+        </div>
+
+        <div class="row mt-4">
+            <div class="col-4">
+                <span>Check-in date</span>
+            </div>
+            <div class="col-8">
+                <span th:text="${request.checkinDate}"></span>
+            </div>
+        </div>
+
+        <div class="row mt-4">
+            <div class="col-4">
+                <span>Check-out date</span>
+            </div>
+            <div class="col-8">
+                <span th:text="${request.checkoutDate}"></span>
+            </div>
+        </div>
+
+        <div class="row mt-4">
+            <div class="col-4">
+                <span>Floor</span>
+            </div>
+            <div class="col-8">
+                <span th:text="${request.floor}"></span>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-4">
+                <label>Room size</label>
+            </div>
+
+            <div class="col-8">
+                <label th:text="${request.size}"></label>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-4">
+                <label>Rooms Quantity</label>
+            </div>
+
+            <div class="col-8">
+                <label th:text="${request.roomsQuantity}"></label>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-4">
+                <label>Adults Quantity</label>
+            </div>
+
+            <div class="col-8">
+                <label th:text="${request.adultsQuantity}"></label>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-4">
+                <label>Children Quantity</label>
+            </div>
+
+            <div class="col-8">
+                <label th:text="${request.childrenQuantity}"></label>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-4">
+                <label>Beds Quantity</label>
+            </div>
+
+            <div class="col-8">
+                <label th:text="${request.bedsQuantity}"></label>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-4">
+                <label>Has Bar?</label>
+            </div>
+
+            <div class="col-8">
+                <label th:text="${request.hasBar}"></label>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-4">
+                <label>Has TV?</label>
+            </div>
+
+            <div class="col-8">
+                <label th:text="${request.hasTv}"></label>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-4">
+                <label>Has Fridge?</label>
+            </div>
+
+            <div class="col-8">
+                <label th:text="${request.hasFridge}"></label>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-4">
+                <label>Has Balcony?</label>
+            </div>
+
+            <div class="col-8">
+                <label th:text="${request.hasBalcony}"></label>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-4">
+                <label>Is smoking allowed?</label>
+            </div>
+
+            <div class="col-8">
+                <label th:text="${request.isSmokingAllowed}"></label>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-4">
+                <label>Are pets allowed?</label>
+            </div>
+
+            <div class="col-8">
+                <label th:text="${request.arePetsAllowed}"></label>
+            </div>
+        </div>
+
+        <div class="row d-flex justify-content-between mt-4">
+            <a class="btn btn-warning float-left" href="/requests">BACK</a>
+            <a class="btn btn-primary float-right" th:href="@{'/requests/' + ${request.id} + '/edit'}">EDIT</a>
+        </div>
+    </div>
+
+    <header th:insert="blocks/footer :: footer"></header>
+
+    <scripts th:insert="blocks/scripts :: scripts"></scripts>
+</body>
+</html>

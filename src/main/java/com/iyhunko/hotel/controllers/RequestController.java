@@ -2,14 +2,17 @@ package com.iyhunko.hotel.controllers;
 
 import com.iyhunko.hotel.CustomUserDetails;
 import com.iyhunko.hotel.models.Request;
+import com.iyhunko.hotel.models.Room;
 import com.iyhunko.hotel.services.RequestService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.ModelAndView;
 
 import java.sql.Timestamp;
 import java.util.List;
@@ -52,6 +55,30 @@ public class RequestController {
         service.save(request);
 
         return "redirect:/requests";
+    }
+
+    @RequestMapping("/requests/{id}/edit")
+    public ModelAndView showEditPage(@PathVariable(name = "id") Long id) {
+        ModelAndView mav = new ModelAndView("request_edit");
+
+        Request request = service.find(id);
+
+        mav.addObject("request", request);
+
+        return mav;
+    }
+
+    @RequestMapping("/requests/{id}/details")
+    public ModelAndView showDetailsPage(
+            @PathVariable(name = "id") Long id
+    ) {
+        ModelAndView mav = new ModelAndView("request_details");
+
+        Request request = service.find(id);
+
+        mav.addObject("request", request);
+
+        return mav;
     }
 
 }

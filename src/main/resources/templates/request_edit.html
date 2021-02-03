@@ -1,0 +1,188 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org"
+>
+
+<head th:insert="blocks/head :: head"></head>
+
+<body>
+
+<header th:insert="blocks/header :: header"></header>
+
+<div class="container mt-5 text-center">
+    <div>
+        <h1>Create new request</h1>
+    </div>
+
+    <div class="mt-4">
+
+        <form th:action="@{/requests/save}" method="post"
+              class="text-left"
+              th:object="${request}"
+              enctype="multipart/form-data"
+        >
+            <input type="hidden" th:field="*{id}"/>
+
+            <div class="form-group row">
+                <label class="col-form-label col-4" for="priceFrom">Price from</label>
+                <div class="col-8">
+                    <input type="number" class="form-control" th:field="*{priceFrom}" required
+                           min="0" name="price" id="priceFrom"
+                    />
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label class="col-form-label col-4" for="priceTo">Price to</label>
+                <div class="col-8">
+                    <input type="number" class="form-control" th:field="*{priceTo}" required
+                           min="0" name="price" id="priceTo"
+                    />
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label class="col-form-label col-4">Check-in date</label>
+                <div class="col-8">
+                    TODO: implement date selector
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label class="col-form-label col-4">Check-out date</label>
+                <div class="col-8">
+                    TODO: implement date selector
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label class="col-form-label col-4" for="floor">Floor</label>
+                <div class="col-8">
+                    <input type="number" class="form-control" th:field="*{floor}" required
+                           min="-100" max="200" name="floor" id="floor"
+                    />
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label class="col-form-label col-4">Class</label>
+                <div class="col-8">
+                    <input type="text" class="form-control" th:field="*{roomClass}" required
+                           minlength="1" maxlength="45"
+                    />
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label class="col-form-label col-4" for="size">Room size</label>
+                <div class="col-8">
+                    <input type="number" class="form-control" th:field="*{size}" required
+                           min="0" name="size" id="size"
+                    />
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label class="col-form-label col-4" for="rooms_quantity">Rooms Quantity</label>
+                <div class="col-8">
+                    <input type="number" class="form-control" th:field="*{roomsQuantity}" required
+                           min="0" name="rooms_quantity" id="rooms_quantity"
+                    />
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label class="col-form-label col-4" for="adults_quantity">Adults Quantity</label>
+                <div class="col-8">
+                    <input type="number" class="form-control" th:field="*{adultsQuantity}" required
+                           min="0" name="rooms_quantity" id="adults_quantity"
+                    />
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label class="col-form-label col-4" for="children_quantity">Children Quantity</label>
+                <div class="col-8">
+                    <input type="number" class="form-control" th:field="*{childrenQuantity}" required
+                           min="0" name="children_quantity" id="children_quantity"
+                    />
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label class="col-form-label col-4" for="beds_quantity">Beds Quantity</label>
+                <div class="col-8">
+                    <input type="number" class="form-control" th:field="*{bedsQuantity}" required
+                           min="0" name="beds_quantity" id="beds_quantity"
+                    />
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <div class="col-sm-4"><label class="form-check-label" for="hasBar">Has Bar?</label></div>
+                <div class="col-sm-8">
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" id="hasBar" th:field="*{hasBar}">
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <div class="col-sm-4"><label class="form-check-label" for="hasTv">Has TV?</label></div>
+                <div class="col-sm-8">
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" id="hasTv" th:field="*{hasTv}">
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <div class="col-sm-4"><label class="form-check-label" for="hasFridge">Has Fridge?</label></div>
+                <div class="col-sm-8">
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" id="hasFridge" th:field="*{hasFridge}">
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <div class="col-sm-4"><label class="form-check-label" for="hasBalcony">Has Balcony?</label></div>
+                <div class="col-sm-8">
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" id="hasBalcony" th:field="*{hasBalcony}">
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <div class="col-sm-4"><label class="form-check-label" for="isSmokingAllowed">Is smoking allowed?</label></div>
+                <div class="col-sm-8">
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" id="isSmokingAllowed" th:field="*{isSmokingAllowed}">
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <div class="col-sm-4"><label class="form-check-label" for="arePetsAllowed">Are pets allowed?</label></div>
+                <div class="col-sm-8">
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" id="arePetsAllowed" th:field="*{arePetsAllowed}">
+                    </div>
+                </div>
+            </div>
+
+            <div class="row d-flex justify-content-between mt-4">
+                <button type="reset" class="btn btn-warning float-left">RESET</button>
+                <button type="submit" class="btn btn-primary float-right">UPDATE</button>
+            </div>
+        </form>
+
+    </div>
+</div>
+
+
+<header th:insert="blocks/footer :: footer"></header>
+
+<scripts th:insert="blocks/scripts :: scripts"></scripts>
+</body>
+</html>

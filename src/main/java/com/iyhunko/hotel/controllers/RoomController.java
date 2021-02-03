@@ -21,7 +21,7 @@ public class RoomController {
     private RoomService service;
 
     @RequestMapping(value = "/rooms/save", method = RequestMethod.POST)
-    public String saveRoom(@ModelAttribute("room") Room room) {
+    public String save(@ModelAttribute("room") Room room) {
         room.setPhoto("https://static.wikia.nocookie.net/zelda_gamepedia_en/images/3/35/WW_Link_3.png/revision/latest/scale-to-width-down/213");
         room.setCreatedAt(new Timestamp(System.currentTimeMillis()));
 

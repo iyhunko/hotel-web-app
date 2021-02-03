@@ -5,6 +5,7 @@
             <a class="p-2 text-dark" href="/">Home</a>
             <a class="p-2 text-dark" sec:authorize="hasAnyAuthority('ADMIN')" th:href="@{/users}">Users</a>
             <a class="p-2 text-dark" sec:authorize="hasAnyAuthority('ADMIN')" th:href="@{/rooms}">Rooms</a>
+            <a class="p-2 text-dark" sec:authorize="hasAnyAuthority('ADMIN')" th:href="@{/requests}">Requests</a>
             <a class="p-2 text-dark" th:href="@{/profile}">Profile</a>
         </nav>
 

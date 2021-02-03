@@ -1,0 +1,77 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org"
+>
+<head th:insert="blocks/head :: head"></head>
+<body>
+<header th:insert="blocks/header :: header"></header>
+
+<div class="container mt-5 text-center">
+    <div class="row">
+        <div class="col">
+            <h1>Requests</h1>
+        </div>
+    </div>
+
+    <div class="row text-left">
+        <div class="col">
+            <a class="btn btn-primary" href="/requests/create" role="button">Create new request</a>
+        </div>
+    </div>
+
+    <div class="row mt-2">
+        <div class="col">
+            <table class="table table-striped table-bordered">
+                <thead class="thead-dark">
+                <tr>
+                    <th>ID</th>
+                    <th>User ID</th>
+                    <th>Price from</th>
+                    <th>Price to</th>
+                    <th>Check-in date</th>
+                    <th>Check-out date</th>
+                    <th>Class</th>
+                    <th>Rooms quantity</th>
+                    <th>Adults quantity</th>
+                    <th>Children quantity</th>
+                    <th>Beds quantity</th>
+                    <th>Actions</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="request: ${requests}">
+                    <td th:text="${request.id}"></td>
+                    <td th:text="${request.userId}"></td>
+                    <td th:text="${request.priceFrom}"></td>
+                    <td><span th:text="${request.priceTo}"></span>$</td>
+                    <td th:text="${request.checkinDate}"></td>
+                    <td th:text="${request.checkoutDate}"></td>
+                    <td th:text="${request.roomClass}"></td>
+                    <td th:text="${request.roomsQuantity}"></td>
+                    <td th:text="${request.adultsQuantity}"></td>
+                    <td th:text="${request.childrenQuantity}"></td>
+                    <td th:text="${request.bedsQuantity}"></td>
+
+                    <td>
+                        <div class="btn-group" role="group" aria-label="Actions">
+                            <a class="btn btn-success" th:href="@{'/requests/' + ${request.id} + '/details'}">
+                                <i class="fa fa-fw fa-eye"></i>
+                            </a>
+                            <a class="btn btn-warning" th:href="@{'/requests/' + ${request.id} + '/edit'}">
+                                <i class="fa fa-fw fa-edit"></i>
+                            </a>
+                            <a class="btn btn-danger" th:href="@{'/requests/' + ${request.id} + '/delete'}">
+                                <i class="fa fa-fw fa-trash"></i>
+                            </a>
+                        </div>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<header th:insert="blocks/footer :: footer"></header>
+<scripts th:insert="blocks/scripts :: scripts"></scripts>
+</body>
+</html>

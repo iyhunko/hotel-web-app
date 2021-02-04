@@ -74,7 +74,7 @@ public class RoomController {
         return mav;
     }
 
-    @RequestMapping("/rooms/delete/{id}")
+    @RequestMapping("/rooms/{id}/delete")
     public String delete(@PathVariable(name = "id") Long id) {
         service.delete(id);
 

@@ -17,6 +17,9 @@ public class Request {
     @Column(name = "user_id")
     private Long userId;
 
+    @Column(name = "booking_id")
+    private Long bookingId;
+
     @Column(name = "price_from")
     private Float priceFrom;
 

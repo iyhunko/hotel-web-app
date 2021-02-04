@@ -1,0 +1,64 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org"
+>
+<head th:insert="blocks/head :: head"></head>
+<body>
+<header th:insert="blocks/header :: header"></header>
+
+<div class="container mt-5 text-center">
+    <div class="row">
+        <div class="col">
+            <h1>Bookings</h1>
+        </div>
+    </div>
+
+    <div class="row mt-2">
+        <div class="col">
+            <table class="table table-striped table-bordered">
+                <thead class="thead-dark">
+                <tr>
+                    <th>ID</th>
+                    <th>User ID</th>
+                    <th>Room ID</th>
+                    <th>Payment ID</th>
+                    <th>Check-in date</th>
+                    <th>Check-out date</th>
+                    <th>Status</th>
+                    <th>Created at</th>
+                    <th>Updated at</th>
+                    <th>Actions</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="booking: ${bookings}">
+                    <td th:text="${booking.id}"></td>
+                    <td th:text="${booking.userId}"></td>
+                    <td th:text="${booking.roomId}"></td>
+                    <td th:text="${booking.paymentId}"></td>
+                    <td th:text="${booking.checkinDate}"></td>
+                    <td th:text="${booking.checkoutDate}"></td>
+                    <td th:text="${booking.status}"></td>
+                    <td th:text="${booking.createdAt}"></td>
+                    <td th:text="${booking.updatedAt}"></td>
+
+                    <td>
+                        <div class="btn-group" role="group" aria-label="Actions">
+                            <a class="btn btn-warning" th:href="@{'/bookings/' + ${booking.id} + '/edit'}">
+                                <i class="fa fa-fw fa-edit"></i>
+                            </a>
+                            <a class="btn btn-danger" th:href="@{'/bookings/' + ${booking.id} + '/delete'}">
+                                <i class="fa fa-fw fa-trash"></i>
+                            </a>
+                        </div>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<header th:insert="blocks/footer :: footer"></header>
+<scripts th:insert="blocks/scripts :: scripts"></scripts>
+</body>
+</html>

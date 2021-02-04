@@ -81,4 +81,11 @@ public class RequestController {
         return mav;
     }
 
+    @RequestMapping("/requests/{id}/delete")
+    public String delete(@PathVariable(name = "id") Long id) {
+        service.delete(id);
+
+        return "redirect:/requests";
+    }
+
 }

@@ -66,7 +66,7 @@ CREATE TABLE `bookings` (
   `checkout_date` TIMESTAMP NOT NULL,
   `status` VARCHAR(45) NOT NULL,
   `updated_at` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
-   `created_at` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `created_at` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`));
 
 
@@ -76,7 +76,7 @@ CREATE TABLE `payments` (
   `sum` INT UNSIGNED NOT NULL,
   `currency` VARCHAR(45) NOT NULL,
   `status` VARCHAR(45) NOT NULL,
-  `expire_date` TIMESTAMP NOT NULL,
+  `expire_at` TIMESTAMP NOT NULL COMMENT 'if status is not success till this moment, then payment request and booking will be closed',
   `updated_at` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `created_at` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`));

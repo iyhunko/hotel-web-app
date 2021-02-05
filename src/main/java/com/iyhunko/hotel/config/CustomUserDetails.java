@@ -1,4 +1,4 @@
-package com.iyhunko.hotel;
+package com.iyhunko.hotel.config;
 
 import com.iyhunko.hotel.models.Role;
 import com.iyhunko.hotel.models.User;

@@ -1,38 +1,75 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org"
-      xmlns:sec="https://www.thymeleaf.org/thymeLeaf-extras-springsecurity5">
+>
 <head th:insert="blocks/head :: head"></head>
 <body>
-    <header th:insert="blocks/header :: header"></header>
+<header th:insert="blocks/header :: header"></header>
 
-    <div class="container mt-5 text-center">
-        <div>
-            <h1>Welcome. This is USERS page.</h1>
-        </div>
-
-        <div>
-            <table class="table table-striped table-bordered">
-                <thead class="thead-dark">
-                    <tr>
-                        <th>User ID</th>
-                        <th>Email</th>
-                        <th>First Name</th>
-                        <th>Last Name</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr th:each="user: ${users}">
-                        <td th:text="${user.id}"></td>
-                        <td th:text="${user.email}"></td>
-                        <td th:text="${user.firstname}"></td>
-                        <td th:text="${user.lastname}"></td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
+<div class="container mt-5 text-center">
+    <div>
+        <h1>Welcome. This is USERS page.</h1>
     </div>
 
-    <header th:insert="blocks/footer :: footer"></header>
-    <scripts th:insert="blocks/scripts :: scripts"></scripts>
+    <div>
+        <table class="table table-striped table-bordered">
+            <thead class="thead-dark">
+            <tr>
+                <th>
+                    <a th:href="@{'/users?' + ${currentPage} + '&sortBy=id&sortOrder=' + ${reverseSortOrder}}">User ID</a>
+                </th>
+                <th>
+                    <a th:href="@{'/users?' + ${currentPage} + '&sortBy=email&sortOrder=' + ${reverseSortOrder}}">Email</a>
+                </th>
+                <th>
+                    <a th:href="@{'/users?' + ${currentPage} + '&sortBy=firstname&sortOrder=' + ${reverseSortOrder}}">First name</a>
+                </th>
+                <th>
+                    <a th:href="@{'/users?' + ${currentPage} + '&sortBy=lastname&sortOrder=' + ${reverseSortOrder}}">Last name</a>
+                </th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="user: ${users}">
+                <td th:text="${user.id}"></td>
+                <td th:text="${user.email}"></td>
+                <td th:text="${user.firstname}"></td>
+                <td th:text="${user.lastname}"></td>
+            </tr>
+            </tbody>
+        </table>
+
+        <div th:if="${totalPages > 1}">
+            <div class="row col-sm-10">
+                <div class="col-sm-2">Total:[[${totalItems}]]</div>
+
+                <div class="col-sm-1">
+                    <a th:if="${currentPage != 1}" th:href="@{'/users?page=' + ${currentPage-1} + '&sortBy=' + ${sortBy} + '&sortOrder=' + ${sortOrder}}">Previous</a>
+                    <span th:unless="${currentPage != 1}">Prev</span>
+                </div>
+
+                <div class="col-sm-1"
+                     th:each="i: ${#numbers.sequence(1, totalPages)}"
+                     th:if="${i == 1 || i == totalPages || (i > currentPage - 3 && i < currentPage + 3) || (i == (currentPage - 2) && currentPage - 3 > 0) || (i == (currentPage + 2) && totalPages - currentPage  > 3)}"
+                >
+                    <span th:if="${i == (currentPage - 2) && currentPage - 3 > 0}">...</span>
+
+                    <a th:if="${currentPage != i && !(i == (currentPage - 2) && currentPage - 3 > 0) && !(i == (currentPage + 2) && totalPages - currentPage  > 3)}" th:href="@{'/users?page=' + ${i} + '&sortBy=' + ${sortBy} + '&sortOrder=' + ${sortOrder}}">[[${i}]]</a>
+                    <span th:unless="${currentPage != i}">[[${i}]]</span>
+
+                    <span th:if="${i == (currentPage + 2) && totalPages - currentPage  > 3}">...</span>
+                </div>
+
+                <div class="col-sm-1">
+                    <a th:if="${currentPage < totalPages}" th:href="@{'/users?page=' + ${currentPage +1} + '&sortBy=' + ${sortBy} + '&sortOrder=' + ${sortOrder}}">Next</a>
+                    <span th:unless="${currentPage < totalPages}">Next</span>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<header th:insert="blocks/footer :: footer"></header>
+<scripts th:insert="blocks/scripts :: scripts"></scripts>
 </body>
 </html>

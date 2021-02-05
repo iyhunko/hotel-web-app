@@ -1,6 +1,6 @@
 package com.iyhunko.hotel.controllers;
 
-import com.iyhunko.hotel.CustomUserDetails;
+import com.iyhunko.hotel.config.CustomUserDetails;
 import com.iyhunko.hotel.models.Payment;
 import com.iyhunko.hotel.services.PaymentService;
 import org.springframework.beans.factory.annotation.Autowired;

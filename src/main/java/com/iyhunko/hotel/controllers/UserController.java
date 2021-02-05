@@ -22,7 +22,7 @@ public class UserController {
     @Autowired
     UserService service;
 
-    int PAGINATION_LIMIT = 1;
+    int PAGINATION_LIMIT = 3;
 
     @GetMapping("/users")
     public String index(

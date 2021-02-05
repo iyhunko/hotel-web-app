@@ -40,6 +40,7 @@ public class UserController {
         model.addAttribute("sortBy", sortBy);
         model.addAttribute("sortOrder", sortOrder);
         model.addAttribute("reverseSortOrder", sortOrder.equalsIgnoreCase("asc") ? "desc" : "asc");
+        model.addAttribute("pageUri", "users");
 
         return "users";
     }

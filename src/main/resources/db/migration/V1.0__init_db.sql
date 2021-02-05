@@ -35,7 +35,7 @@ CREATE TABLE `rooms` (
 CREATE TABLE `requests` (
   `id` BIGINT(20) UNSIGNED NOT NULL AUTO_INCREMENT,
   `user_id` BIGINT(20) UNSIGNED NOT NULL,
-  `booking_id` BIGINT(20) UNSIGNED NOT NULL,
+  `booking_id` BIGINT(20) UNSIGNED NULL,
   `price_from` FLOAT UNSIGNED NULL,
   `price_to` FLOAT UNSIGNED NULL,
   `checkin_date` TIMESTAMP NOT NULL,

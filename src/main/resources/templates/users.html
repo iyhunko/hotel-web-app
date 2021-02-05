@@ -15,16 +15,16 @@
             <thead class="thead-dark">
             <tr>
                 <th>
-                    <a th:href="@{'/users?' + ${currentPage} + '&sortBy=id&sortOrder=' + ${reverseSortOrder}}">User ID</a>
+                    <a th:href="@{'/users?sortBy=id&sortOrder=' + ${reverseSortOrder}}">ID</a>
                 </th>
                 <th>
-                    <a th:href="@{'/users?' + ${currentPage} + '&sortBy=email&sortOrder=' + ${reverseSortOrder}}">Email</a>
+                    <a th:href="@{'/users?sortBy=email&sortOrder=' + ${reverseSortOrder}}">Email</a>
                 </th>
                 <th>
-                    <a th:href="@{'/users?' + ${currentPage} + '&sortBy=firstname&sortOrder=' + ${reverseSortOrder}}">First name</a>
+                    <a th:href="@{'/users?sortBy=firstname&sortOrder=' + ${reverseSortOrder}}">First name</a>
                 </th>
                 <th>
-                    <a th:href="@{'/users?' + ${currentPage} + '&sortBy=lastname&sortOrder=' + ${reverseSortOrder}}">Last name</a>
+                    <a th:href="@{'/users?sortBy=lastname&sortOrder=' + ${reverseSortOrder}}">Last name</a>
                 </th>
             </tr>
             </thead>

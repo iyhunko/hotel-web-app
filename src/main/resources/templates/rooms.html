@@ -23,17 +23,39 @@
             <table class="table table-striped table-bordered">
                 <thead class="thead-dark">
                 <tr>
-                    <th>ID</th>
-                    <th>Number</th>
-                    <th>Title</th>
-                    <th>Price</th>
-                    <th>Floor</th>
-                    <th>Class</th>
-                    <th>Size</th>
-                    <th>Rooms quantity</th>
-                    <th>Adults quantity</th>
-                    <th>Children quantity</th>
-                    <th>Beds quantity</th>
+                    <th>
+                        <a th:href="@{'/rooms?sortBy=id&sortOrder=' + ${reverseSortOrder}}">ID</a>
+                    </th>
+                    <th>
+                        <a th:href="@{'/rooms?sortBy=number&sortOrder=' + ${reverseSortOrder}}">Number</a>
+                    </th>
+                    <th>
+                        <a th:href="@{'/rooms?sortBy=title&sortOrder=' + ${reverseSortOrder}}">Title</a>
+                    </th>
+                    <th>
+                        <a th:href="@{'/rooms?sortBy=price&sortOrder=' + ${reverseSortOrder}}">Price</a>
+                    </th>
+                    <th>
+                        <a th:href="@{'/rooms?sortBy=floor&sortOrder=' + ${reverseSortOrder}}">Floor</a>
+                    </th>
+                    <th>
+                        <a th:href="@{'/rooms?sortBy=roomClass&sortOrder=' + ${reverseSortOrder}}">Class</a>
+                    </th>
+                    <th>
+                        <a th:href="@{'/rooms?sortBy=size&sortOrder=' + ${reverseSortOrder}}">Size</a>
+                    </th>
+                    <th>
+                        <a th:href="@{'/rooms?sortBy=roomsQuantity&sortOrder=' + ${reverseSortOrder}}">Rooms quantity</a>
+                    </th>
+                    <th>
+                        <a th:href="@{'/rooms?sortBy=adultsQuantity&sortOrder=' + ${reverseSortOrder}}">Adults quantity</a>
+                    </th>
+                    <th>
+                        <a th:href="@{'/rooms?sortBy=childrenQuantity&sortOrder=' + ${reverseSortOrder}}">Children quantity</a>
+                    </th>
+                    <th>
+                        <a th:href="@{'/rooms?sortBy=bedsQuantity&sortOrder=' + ${reverseSortOrder}}">Beds quantity</a>
+                    </th>
                     <th>Actions</th>
                 </tr>
                 </thead>

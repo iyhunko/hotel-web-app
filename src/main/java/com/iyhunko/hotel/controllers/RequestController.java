@@ -4,29 +4,39 @@ import com.iyhunko.hotel.config.CustomUserDetails;
 import com.iyhunko.hotel.models.Request;
 import com.iyhunko.hotel.services.RequestService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
-import java.sql.Timestamp;
-import java.util.List;
+import java.sql.Date;
 
 @Controller
 public class RequestController {
 
+    int PAGINATION_LIMIT = 5;
     @Autowired
     private RequestService service;
 
     @RequestMapping("/requests")
-    public String showListPage(Model model) {
-        List<Request> requests = service.all();
+    public String index(
+            @RequestParam(value = "page", required = false, defaultValue = "1") int page,
+            @RequestParam(value = "sortBy", required = false, defaultValue = "id") String sortBy,
+            @RequestParam(value = "sortOrder", required = false, defaultValue = "DESC") String sortOrder,
+            Model model
+    ) {
+        Page<Request> requestsWithPagination = service.getWithPagination(page, PAGINATION_LIMIT, sortBy, sortOrder);
 
-        model.addAttribute("requests", requests);
+        model.addAttribute("requests", requestsWithPagination.getContent());
+        model.addAttribute("currentPage", page);
+        model.addAttribute("totalPages", requestsWithPagination.getTotalPages());
+        model.addAttribute("totalItems", requestsWithPagination.getTotalElements());
+        model.addAttribute("sortBy", sortBy);
+        model.addAttribute("sortOrder", sortOrder);
+        model.addAttribute("reverseSortOrder", sortOrder.equalsIgnoreCase("asc") ? "desc" : "asc");
+        model.addAttribute("pageUri", "requests");
 
         return "requests";
     }
@@ -45,10 +55,10 @@ public class RequestController {
             @ModelAttribute("request") Request request,
             @AuthenticationPrincipal CustomUserDetails currentUser
     ) {
-        request.setCreatedAt(new Timestamp(System.currentTimeMillis()));
-        request.setUpdatedAt(new Timestamp(System.currentTimeMillis()));
-        request.setCheckinDate(new Timestamp(System.currentTimeMillis()));
-        request.setCheckoutDate(new Timestamp(System.currentTimeMillis()));
+//        request.setCreatedAt(new Timestamp(System.currentTimeMillis()));
+//        request.setUpdatedAt(new Timestamp(System.currentTimeMillis()));
+        request.setCheckinDate(new Date(System.currentTimeMillis()));
+        request.setCheckoutDate(new Date(System.currentTimeMillis()));
         request.setUserId(currentUser.getUser().getId());
 
         service.save(request);

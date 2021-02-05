@@ -1,9 +1,11 @@
 package com.iyhunko.hotel.models;
 
+import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.Type;
+import org.hibernate.annotations.UpdateTimestamp;
 
 import javax.persistence.*;
-import java.sql.Timestamp;
+import java.util.Date;
 
 @Entity
 @Table(name = "requests")
@@ -26,11 +28,13 @@ public class Request {
     @Column(name = "price_to")
     private Float priceTo;
 
+    @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "checkin_date")
-    private Timestamp checkinDate;
+    private Date checkinDate;
 
+    @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "checkout_date")
-    private Timestamp checkoutDate;
+    private Date checkoutDate;
 
     private Integer floor;
 
@@ -76,25 +80,29 @@ public class Request {
     @Column(name = "are_pets_allowed", columnDefinition = "TINYINT")
     private Boolean arePetsAllowed = false;
 
+    @UpdateTimestamp
+    @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "updated_at")
-    private Timestamp updatedAt;
+    private Date updatedAt = new Date();
 
+    @CreationTimestamp
+    @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "created_at")
-    private Timestamp createdAt;
+    private Date createdAt = new Date();
 
-    public Timestamp getUpdatedAt() {
+    public Date getUpdatedAt() {
         return updatedAt;
     }
 
-    public void setUpdatedAt(Timestamp updatedAt) {
+    public void setUpdatedAt(Date updatedAt) {
         this.updatedAt = updatedAt;
     }
 
-    public Timestamp getCreatedAt() {
+    public Date getCreatedAt() {
         return createdAt;
     }
 
-    public void setCreatedAt(Timestamp createdAt) {
+    public void setCreatedAt(Date createdAt) {
         this.createdAt = createdAt;
     }
 
@@ -130,19 +138,19 @@ public class Request {
         this.priceTo = priceTo;
     }
 
-    public Timestamp getCheckinDate() {
+    public Date getCheckinDate() {
         return checkinDate;
     }
 
-    public void setCheckinDate(Timestamp checkinDate) {
+    public void setCheckinDate(Date checkinDate) {
         this.checkinDate = checkinDate;
     }
 
-    public Timestamp getCheckoutDate() {
+    public Date getCheckoutDate() {
         return checkoutDate;
     }
 
-    public void setCheckoutDate(Timestamp checkoutDate) {
+    public void setCheckoutDate(Date checkoutDate) {
         this.checkoutDate = checkoutDate;
     }
 

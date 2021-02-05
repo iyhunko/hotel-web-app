@@ -35,7 +35,7 @@
                 <span>Check-in date</span>
             </div>
             <div class="col-8">
-                <span th:text="${request.checkinDate}"></span>
+                <span th:text="${#dates.format(request.checkinDate, 'yyyy-MM-dd')}"></span>
             </div>
         </div>
 
@@ -44,7 +44,7 @@
                 <span>Check-out date</span>
             </div>
             <div class="col-8">
-                <span th:text="${request.checkoutDate}"></span>
+                <span th:text="${#dates.format(request.checkoutDate, 'yyyy-MM-dd')}"></span>
             </div>
         </div>
 
@@ -57,7 +57,7 @@
             </div>
         </div>
 
-        <div class="row">
+        <div class="row mt-4">
             <div class="col-4">
                 <label>Room size</label>
             </div>
@@ -67,7 +67,7 @@
             </div>
         </div>
 
-        <div class="row">
+        <div class="row mt-4">
             <div class="col-4">
                 <label>Rooms Quantity</label>
             </div>
@@ -77,7 +77,7 @@
             </div>
         </div>
 
-        <div class="row">
+        <div class="row mt-4">
             <div class="col-4">
                 <label>Adults Quantity</label>
             </div>
@@ -87,7 +87,7 @@
             </div>
         </div>
 
-        <div class="row">
+        <div class="row mt-4">
             <div class="col-4">
                 <label>Children Quantity</label>
             </div>
@@ -97,7 +97,7 @@
             </div>
         </div>
 
-        <div class="row">
+        <div class="row mt-4">
             <div class="col-4">
                 <label>Beds Quantity</label>
             </div>
@@ -107,7 +107,7 @@
             </div>
         </div>
 
-        <div class="row">
+        <div class="row mt-4">
             <div class="col-4">
                 <label>Has Bar?</label>
             </div>
@@ -117,7 +117,7 @@
             </div>
         </div>
 
-        <div class="row">
+        <div class="row mt-4">
             <div class="col-4">
                 <label>Has TV?</label>
             </div>
@@ -127,7 +127,7 @@
             </div>
         </div>
 
-        <div class="row">
+        <div class="row mt-4">
             <div class="col-4">
                 <label>Has Fridge?</label>
             </div>
@@ -137,7 +137,7 @@
             </div>
         </div>
 
-        <div class="row">
+        <div class="row mt-4">
             <div class="col-4">
                 <label>Has Balcony?</label>
             </div>
@@ -147,7 +147,7 @@
             </div>
         </div>
 
-        <div class="row">
+        <div class="row mt-4">
             <div class="col-4">
                 <label>Is smoking allowed?</label>
             </div>
@@ -157,13 +157,31 @@
             </div>
         </div>
 
-        <div class="row">
+        <div class="row mt-4">
             <div class="col-4">
                 <label>Are pets allowed?</label>
             </div>
 
             <div class="col-8">
                 <label th:text="${request.arePetsAllowed}"></label>
+            </div>
+        </div>
+
+        <div class="row mt-4">
+            <div class="col-4">
+                <span>Updated at</span>
+            </div>
+            <div class="col-8">
+                <span th:text="${#dates.format(request.updatedAt, 'yyyy-MM-dd HH:mm')}"></span>
+            </div>
+        </div>
+
+        <div class="row mt-4">
+            <div class="col-4">
+                <span>Created at</span>
+            </div>
+            <div class="col-8">
+                <span th:text="${#dates.format(request.createdAt, 'yyyy-MM-dd HH:mm')}"></span>
             </div>
         </div>
 

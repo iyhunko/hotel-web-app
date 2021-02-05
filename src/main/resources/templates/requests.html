@@ -31,9 +31,8 @@
                     <th>Check-out date</th>
                     <th>Class</th>
                     <th>Rooms quantity</th>
-                    <th>Adults quantity</th>
-                    <th>Children quantity</th>
                     <th>Beds quantity</th>
+                    <th>Created&nbsp;at</th>
                     <th>Actions</th>
                 </tr>
                 </thead>
@@ -41,15 +40,14 @@
                 <tr th:each="request: ${requests}">
                     <td th:text="${request.id}"></td>
                     <td th:text="${request.userId}"></td>
-                    <td th:text="${request.priceFrom}"></td>
+                    <td><span th:text="${request.priceFrom}"></span>$</td>
                     <td><span th:text="${request.priceTo}"></span>$</td>
-                    <td th:text="${request.checkinDate}"></td>
-                    <td th:text="${request.checkoutDate}"></td>
+                    <td th:text="${#dates.format(request.checkinDate, 'yyyy-MM-dd')}"></td>
+                    <td th:text="${#dates.format(request.checkoutDate, 'yyyy-MM-dd')}"></td>
                     <td th:text="${request.roomClass}"></td>
                     <td th:text="${request.roomsQuantity}"></td>
-                    <td th:text="${request.adultsQuantity}"></td>
-                    <td th:text="${request.childrenQuantity}"></td>
                     <td th:text="${request.bedsQuantity}"></td>
+                    <td th:text="${#dates.format(request.createdAt, 'yyyy-MM-dd')}"></td>
 
                     <td>
                         <div class="btn-group" role="group" aria-label="Actions">
@@ -67,6 +65,8 @@
                 </tr>
                 </tbody>
             </table>
+
+            <pagination th:insert="blocks/pagination :: pagination"></pagination>
         </div>
     </div>
 </div>

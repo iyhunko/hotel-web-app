@@ -19,7 +19,7 @@ public class RoomController {
     @Autowired
     private RoomService service;
 
-    int PAGINATION_LIMIT = 3;
+    int PAGINATION_LIMIT = 5;
 
     @RequestMapping("/rooms")
     public String index(

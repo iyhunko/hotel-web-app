@@ -1,14 +1,13 @@
 package com.iyhunko.hotel.controllers;
 
 import com.iyhunko.hotel.models.Room;
+import com.iyhunko.hotel.models.User;
 import com.iyhunko.hotel.services.RoomService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.sql.Timestamp;
@@ -20,6 +19,29 @@ public class RoomController {
     @Autowired
     private RoomService service;
 
+    int PAGINATION_LIMIT = 3;
+
+    @RequestMapping("/rooms")
+    public String index(
+            @RequestParam(value = "page", required = false, defaultValue = "1") int page,
+            @RequestParam(value = "sortBy", required = false, defaultValue = "id") String sortBy,
+            @RequestParam(value = "sortOrder", required = false, defaultValue = "DESC") String sortOrder,
+            Model model
+    ) {
+        Page<Room> roomsWithPagination = service.getWithPagination(page, PAGINATION_LIMIT, sortBy, sortOrder);
+
+        model.addAttribute("rooms", roomsWithPagination.getContent());
+        model.addAttribute("currentPage", page);
+        model.addAttribute("totalPages", roomsWithPagination.getTotalPages());
+        model.addAttribute("totalItems", roomsWithPagination.getTotalElements());
+        model.addAttribute("sortBy", sortBy);
+        model.addAttribute("sortOrder", sortOrder);
+        model.addAttribute("reverseSortOrder", sortOrder.equalsIgnoreCase("asc") ? "desc" : "asc");
+        model.addAttribute("pageUri", "rooms");
+
+        return "rooms";
+    }
+
     @RequestMapping(value = "/rooms/save", method = RequestMethod.POST)
     public String save(@ModelAttribute("room") Room room) {
         room.setPhoto("https://static.wikia.nocookie.net/zelda_gamepedia_en/images/3/35/WW_Link_3.png/revision/latest/scale-to-width-down/213");
@@ -28,15 +50,6 @@ public class RoomController {
         service.save(room);
 
         return "redirect:/rooms";
-    }
-
-    @RequestMapping("/rooms")
-    public String showListPage(Model model) {
-        List<Room> listRooms = service.all();
-
-        model.addAttribute("rooms", listRooms);
-
-        return "rooms";
     }
 
     @RequestMapping("/rooms/create")

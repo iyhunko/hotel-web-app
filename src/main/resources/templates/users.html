@@ -26,6 +26,10 @@
                 <th>
                     <a th:href="@{'/users?sortBy=lastname&sortOrder=' + ${reverseSortOrder}}">Last name</a>
                 </th>
+                <th>
+                    <a th:href="@{'/users?sortBy=createdAt&sortOrder=' + ${reverseSortOrder}}">Created at</a>
+                </th>
+                <th>Actions</th>
             </tr>
             </thead>
             <tbody>
@@ -34,6 +38,17 @@
                 <td th:text="${user.email}"></td>
                 <td th:text="${user.firstname}"></td>
                 <td th:text="${user.lastname}"></td>
+                <td th:text="${#dates.format(user.createdAt, 'yyyy-MM-dd')}"></td>
+                <td>
+                    <div class="btn-group" role="group" aria-label="Actions">
+                        <a class="btn btn-warning" th:href="@{'/users/' + ${user.id} + '/edit'}">
+                            <i class="fa fa-fw fa-edit"></i>
+                        </a>
+                        <a class="btn btn-danger" th:href="@{'/users/' + ${user.id} + '/delete'}">
+                            <i class="fa fa-fw fa-trash"></i>
+                        </a>
+                    </div>
+                </td>
             </tr>
             </tbody>
         </table>

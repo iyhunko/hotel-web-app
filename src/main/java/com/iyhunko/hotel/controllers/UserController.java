@@ -9,9 +9,8 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
 
 import java.util.Map;
 
@@ -65,4 +64,28 @@ public class UserController {
         return "redirect:/user";
     }
 
+    @RequestMapping(value = "/users/save", method = RequestMethod.POST)
+    public String save(
+            @ModelAttribute("user") User user
+    ) {
+        service.save(user);
+
+        return "redirect:/users";
+    }
+
+    @RequestMapping("/users/{id}/edit")
+    public ModelAndView showEditPage(@PathVariable(name = "id") Long id) {
+        ModelAndView mav = new ModelAndView("user_edit");
+
+        mav.addObject("user", service.find(id));
+
+        return mav;
+    }
+
+    @RequestMapping("/users/{id}/delete")
+    public String delete(@PathVariable(name = "id") Long id) {
+        service.delete(id);
+
+        return "redirect:/users";
+    }
 }

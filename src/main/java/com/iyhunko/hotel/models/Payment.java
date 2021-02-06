@@ -1,7 +1,10 @@
 package com.iyhunko.hotel.models;
 
+import org.hibernate.annotations.CreationTimestamp;
+
 import javax.persistence.*;
 import java.sql.Timestamp;
+import java.util.Date;
 
 @Entity
 @Table(name = "payments")
@@ -35,14 +38,20 @@ public class Payment {
     @Column(name = "status")
     private String status;
 
+    @CreationTimestamp
+    @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "expire_at")
-    private Timestamp expireAt;
+    private Date expireAt;
 
+    @CreationTimestamp
+    @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "updated_at")
-    private Timestamp updatedAt;
+    private Date updatedAt;
 
+    @CreationTimestamp
+    @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "created_at")
-    private Timestamp createdAt;
+    private Date createdAt;
 
     public Long getBookingId() {
         return bookingId;
@@ -76,27 +85,27 @@ public class Payment {
         this.status = status;
     }
 
-    public Timestamp getExpireAt() {
+    public Date getExpireAt() {
         return expireAt;
     }
 
-    public void setExpireAt(Timestamp expireAt) {
+    public void setExpireAt(Date expireAt) {
         this.expireAt = expireAt;
     }
 
-    public Timestamp getUpdatedAt() {
+    public Date getUpdatedAt() {
         return updatedAt;
     }
 
-    public void setUpdatedAt(Timestamp updatedAt) {
+    public void setUpdatedAt(Date updatedAt) {
         this.updatedAt = updatedAt;
     }
 
-    public Timestamp getCreatedAt() {
+    public Date getCreatedAt() {
         return createdAt;
     }
 
-    public void setCreatedAt(Timestamp createdAt) {
+    public void setCreatedAt(Date createdAt) {
         this.createdAt = createdAt;
     }
 

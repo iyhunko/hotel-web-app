@@ -61,21 +61,21 @@
             <div class="form-group row">
                 <label class="col-form-label col-4">Expire At</label>
                 <div class="col-8">
-                    <span th:text="*{expireAt}"></span>
+                    <span th:text="${#dates.format(payment.expireAt, 'yyyy-MM-dd HH:mm')}"></span> <i><b>// TODO: make it editable</b></i>
                 </div>
             </div>
 
             <div class="form-group row">
                 <label class="col-form-label col-4">Created At</label>
                 <div class="col-8">
-                    <span th:text="*{createdAt}"></span>
+                    <span th:text="${#dates.format(payment.createdAt, 'yyyy-MM-dd HH:mm')}"></span>
                 </div>
             </div>
 
             <div class="form-group row">
                 <label class="col-form-label col-4">Updated At</label>
                 <div class="col-8">
-                    <span th:text="*{updatedAt}"></span>
+                    <span th:text="${#dates.format(payment.updatedAt, 'yyyy-MM-dd HH:mm')}"></span>
                 </div>
             </div>
 

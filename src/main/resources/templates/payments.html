@@ -34,12 +34,12 @@
                     <td>
                         <a class="btn btn-secondary" th:href="@{'/bookings/' + ${payment.bookingId} + '/edit'}" th:text="${payment.bookingId}"></a>
                     </td>
-                    <td th:text="${payment.sum}"></td>
+                    <td><span th:text="${#numbers.formatDecimal(payment.sum, 0, 0)}"></span>$</td>
                     <td th:text="${payment.currency}"></td>
                     <td th:text="${payment.status}"></td>
-                    <td th:text="${payment.expireAt}"></td>
-                    <td th:text="${payment.createdAt}"></td>
-                    <td th:text="${payment.updatedAt}"></td>
+                    <td th:text="${#dates.format(payment.expireAt, 'yyyy-MM-dd  HH:mm')}"></td>
+                    <td th:text="${#dates.format(payment.createdAt, 'yyyy-MM-dd')}"></td>
+                    <td th:text="${#dates.format(payment.updatedAt, 'yyyy-MM-dd  HH:mm')}"></td>
 
                     <td>
                         <div class="btn-group" role="group" aria-label="Actions">
@@ -54,6 +54,8 @@
                 </tr>
                 </tbody>
             </table>
+
+            <pagination th:insert="blocks/pagination :: pagination"></pagination>
         </div>
     </div>
 </div>

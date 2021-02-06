@@ -3,6 +3,10 @@ package com.iyhunko.hotel.services;
 import com.iyhunko.hotel.models.Payment;
 import com.iyhunko.hotel.repositories.PaymentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -26,5 +30,15 @@ public class PaymentService {
 
     public void delete(Long id) {
         repository.deleteById(id);
+    }
+
+    public Page<Payment> getWithPagination(int pageNo, int pageSize, String sortBy, String sortOrder) {
+        Sort sort = sortOrder.equalsIgnoreCase(Sort.Direction.ASC.name())
+                ? Sort.by(sortBy).ascending()
+                : Sort.by(sortBy).descending();
+
+        Pageable pageable = PageRequest.of(pageNo - 1, pageSize, sort);
+
+        return repository.findAll(pageable);
     }
 }

@@ -2,6 +2,7 @@ package com.iyhunko.hotel.controllers;
 
 import com.iyhunko.hotel.config.CustomUserDetails;
 import com.iyhunko.hotel.models.User;
+import com.iyhunko.hotel.services.PasswordEncoder;
 import com.iyhunko.hotel.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -46,22 +47,29 @@ public class UserController {
 
     @GetMapping("/profile")
     public String profile(Model model, @AuthenticationPrincipal CustomUserDetails userDetails) {
-        User user = userDetails.getUser();
-
-        model.addAttribute("email", user.getEmail());
-        model.addAttribute("firstname", user.getFirstname());
-        model.addAttribute("lastname", user.getLastname());
-        model.addAttribute("phone", user.getPhone());
+        model.addAttribute("user", service.find(userDetails.getUser().getId()));
 
         return "profile";
     }
 
-    @PutMapping("/users")
+    @RequestMapping(value = "/users/profile", method = RequestMethod.POST)
     public String updateProfile(
-            @RequestParam Map<String, String> form
+            @ModelAttribute("user") User user,
+            @AuthenticationPrincipal CustomUserDetails userDetails
     ) {
-        // TODO: add validation
-        return "redirect:/user";
+        // TODO: chek if password1 == password2 and return validation error
+        // TODO: add validation for all fields
+
+        if (user.getPassword().equals("")) {
+            user.setPassword(userDetails.getPassword());
+        } else {
+            user.setPassword(PasswordEncoder.encodePassword(user.getPassword()));
+            user.setRoles(userDetails.getUser().getRoles());
+        }
+
+        service.save(user);
+
+        return "redirect:/profile";
     }
 
     @RequestMapping(value = "/users/save", method = RequestMethod.POST)

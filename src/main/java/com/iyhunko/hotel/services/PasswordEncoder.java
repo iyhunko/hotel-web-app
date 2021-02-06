@@ -3,12 +3,9 @@ package com.iyhunko.hotel.services;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 public class PasswordEncoder {
-    public static void main(String[] args) {
+    public static String encodePassword(String password) {
         BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
-        String password = "test123";
 
-        String encodedPassword = encoder.encode(password);
-
-        System.out.println(encodedPassword);
+        return encoder.encode(password);
     }
 }

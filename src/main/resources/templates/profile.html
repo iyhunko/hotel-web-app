@@ -1,6 +1,7 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org"
-      xmlns:sec="https://www.thymeleaf.org/thymeLeaf-extras-springsecurity5">
+      xmlns:sec="https://www.thymeleaf.org/thymeLeaf-extras-springsecurity5"
+>
 
 <head th:insert="blocks/head :: head"></head>
 
@@ -10,69 +11,98 @@
 
 <div class="container mt-5 text-center">
     <div>
-        <h1>Profile</h1>
+        <h1>Edit profile</h1>
     </div>
 
-    <div class="d-flex justify-content-center align-items-center">
+    <div class="mt-4">
 
-        <form th:action="@{/users}" method="post"
+        <form th:action="@{/users/profile}" method="post"
               class="text-left"
               th:object="${user}"
+              enctype="multipart/form-data"
         >
-            <input type="hidden" name="_method" value="put"/>
+            <input type="hidden" th:field="*{id}"/>
 
-            <div class="m-3">
-                <div class="form-group row">
-                    <label class="col-form-label col-4">E-mail</label>
-                    <div class="col-8">
-                        <input type="email" class="form-control" th:field="*{email}" required/>
-                    </div>
+            <div class="form-group row">
+                <label class="col-form-label col-4" for="email">Email</label>
+                <div class="col-8">
+                    <input type="text" class="form-control" th:field="*{email}" required
+                           minlength="1" maxlength="45" id="email"
+                    />
                 </div>
-                <div class="form-group row">
-                    <label class="col-form-label col-4">Password</label>
-                    <div class="col-8">
-                        <input type="password" class="form-control" name="password1" th:field="*{password}" required
-                               minlength="6" maxlength="10"
-                        />
-                    </div>
-                </div>
-                <div class="form-group row">
-                    <label class="col-form-label col-4">Password</label>
-                    <div class="col-8">
-                        <input type="password" class="form-control" name="password2" th:field="*{password}" required
-                               minlength="6" maxlength="10"
-                        />
-                    </div>
-                </div>
-                <div class="form-group row">
-                    <label class="col-form-label col-4">First Name</label>
-                    <div class="col-8">
-                        <input type="text" class="form-control" th:field="*{firstname}" required
-                               minlength="2" maxlength="20"
-                        />
-                    </div>
-                </div>
-                <div class="form-group row">
-                    <label class="col-form-label col-4">Last Name</label>
-                    <div class="col-8">
-                        <input type="text" class="form-control" th:field="*{lastname}" required
-                               minlength="2" maxlength="20"
-                        />
-                    </div>
-                </div>
-                <div class="form-group row">
-                    <label class="col-form-label col-4">Last Name</label>
-                    <div class="col-8">
-                        <input type="text" class="form-control" th:field="*{phone!''}"
-                               minlength="4" maxlength="45"
-                        />
-                    </div>
-                </div>
+            </div>
 
-                <div class="row d-flex justify-content-between">
-                    <button type="reset" class="btn btn-warning float-left">RESET</button>
-                    <button type="submit" class="btn btn-primary float-right">UPDATE</button>
+            <div class="form-group row">
+                <label class="col-form-label col-4" for="firstname">First name</label>
+                <div class="col-8">
+                    <input type="text" class="form-control" th:field="*{firstname}"
+                           minlength="1" maxlength="30" id="firstname"
+                    />
                 </div>
+            </div>
+
+            <div class="form-group row">
+                <label class="col-form-label col-4" for="lastname">Last name</label>
+                <div class="col-8">
+                    <input type="text" class="form-control" th:field="*{lastname}" required
+                           minlength="1" maxlength="30" id="lastname"
+                    />
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label class="col-form-label col-4" for="phone">Phone</label>
+                <div class="col-8">
+                    <input type="text" class="form-control" th:field="*{phone}"
+                           minlength="1" maxlength="45" id="phone"
+                    />
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label class="col-form-label col-4" for="password1">New Password</label>
+                <div class="col-8">
+                    <input type="password" class="form-control" th:field="*{password}" autocomplete="off"
+                           minlength="1" maxlength="45" id="password1" placeholder="New Password"
+                    />
+
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <i id="8char" class="fa fa-fw fa-times text-danger"></i>8 Characters Long<br>
+                            <span id="ucase" class="fa fa-fw fa-times text-danger"></span> One Uppercase Letter
+                        </div>
+                        <div class="col-sm-6">
+                            <span id="lcase" class="fa fa-fw fa-times text-danger"></span> One Lowercase Letter<br>
+                            <span id="num" class="fa fa-fw fa-times text-danger"></span> One Number
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label class="col-form-label col-4" for="password2">Repeat Password</label>
+                <div class="col-8">
+                    <input type="password" class="form-control" name="repeat_password" autocomplete="off"
+                           minlength="1" maxlength="45" id="password2" placeholder="Repeat Password"
+                    />
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <span id="pwmatch" class="fa fa-fw fa-times text-danger"></span> Passwords Match
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label class="col-form-label col-4">Created At</label>
+                <div class="col-8">
+                    <span th:text="${#dates.format(user.createdAt, 'yyyy-MM-dd HH:mm')}"></span>
+                </div>
+            </div>
+
+            <div class="row d-flex justify-content-between mt-4">
+                <button type="reset" class="btn btn-warning float-left">RESET</button>
+                <button type="submit" class="btn btn-primary float-right" data-loading-text="Updating profile...">UPDATE</button>
             </div>
         </form>
 
@@ -83,5 +113,65 @@
 <header th:insert="blocks/footer :: footer"></header>
 
 <scripts th:insert="blocks/scripts :: scripts"></scripts>
+
+<script>
+     $("input[type=password]").keyup(function(){
+        var ucase = new RegExp("[A-Z]+");
+        var lcase = new RegExp("[a-z]+");
+        var num = new RegExp("[0-9]+");
+
+        if($("#password1").val().length >= 8){
+            $("#8char").removeClass("fa-times");
+            $("#8char").removeClass("text-danger");
+            $("#8char").addClass("fa-check");
+        }else{
+            $("#8char").removeClass("fa-check");
+            $("#8char").addClass("fa-times");
+            $("#8char").addClass("text-danger");
+        }
+
+        if(ucase.test($("#password1").val())){
+        $("#8char").removeClass("fa-times");
+            $("#ucase").removeClass("fa-times");
+            $("#ucase").removeClass("text-danger");
+            $("#ucase").addClass("fa-check");
+        }else{
+            $("#ucase").removeClass("fa-check");
+            $("#ucase").addClass("fa-times");
+            $("#ucase").addClass("text-danger");
+        }
+
+        if(lcase.test($("#password1").val())){
+            $("#lcase").removeClass("fa-times");
+            $("#lcase").removeClass("text-danger");
+            $("#lcase").addClass("fa-check");
+        }else{
+            $("#lcase").removeClass("fa-check");
+            $("#lcase").addClass("fa-times");
+            $("#lcase").addClass("text-danger");
+        }
+
+        if(num.test($("#password1").val())){
+            $("#num").removeClass("fa-times");
+            $("#num").removeClass("text-danger");
+            $("#num").addClass("fa-check");
+        }else{
+            $("#num").removeClass("fa-check");
+            $("#num").addClass("fa-times");
+            $("#num").addClass("text-danger");
+        }
+
+        if($("#password1").val() == $("#password2").val()){
+            $("#pwmatch").removeClass("fa-times");
+            $("#pwmatch").removeClass("text-danger");
+            $("#pwmatch").addClass("fa-check");
+        }else{
+            $("#pwmatch").removeClass("fa-check");
+            $("#pwmatch").addClass("fa-times");
+            $("#pwmatch").addClass("text-danger");
+        }
+    });
+
+</script>
 </body>
 </html>

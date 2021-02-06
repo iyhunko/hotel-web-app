@@ -31,7 +31,7 @@ public class User {
 
     @CreationTimestamp
     @Temporal(TemporalType.TIMESTAMP)
-    @Column(name = "created_at")
+    @Column(name = "created_at", updatable = false, nullable = false)
     private Date createdAt;
 
     public Date getCreatedAt() {

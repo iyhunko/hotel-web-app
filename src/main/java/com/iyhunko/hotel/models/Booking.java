@@ -1,7 +1,10 @@
 package com.iyhunko.hotel.models;
 
+import org.hibernate.annotations.CreationTimestamp;
+
 import javax.persistence.*;
 import java.sql.Timestamp;
+import java.util.Date;
 
 @Entity
 @Table(name = "bookings")
@@ -20,11 +23,15 @@ public class Booking {
     @Column(name = "payment_id")
     private Long paymentId;
 
+    @CreationTimestamp
+    @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "checkin_date")
-    private Timestamp checkinDate;
+    private Date checkinDate;
 
+    @CreationTimestamp
+    @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "checkout_date")
-    private Timestamp checkoutDate;
+    private Date checkoutDate;
 
     /**
      * TODO: use Enum instead of String here
@@ -32,11 +39,15 @@ public class Booking {
     @Column(name = "status")
     private String status;
 
+    @CreationTimestamp
+    @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "updated_at")
-    private Timestamp updatedAt;
+    private Date updatedAt;
 
+    @CreationTimestamp
+    @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "created_at")
-    private Timestamp createdAt;
+    private Date createdAt;
 
     public Long getId() {
         return id;
@@ -70,19 +81,19 @@ public class Booking {
         this.paymentId = paymentId;
     }
 
-    public Timestamp getCheckinDate() {
+    public Date getCheckinDate() {
         return checkinDate;
     }
 
-    public void setCheckinDate(Timestamp checkinDate) {
+    public void setCheckinDate(Date checkinDate) {
         this.checkinDate = checkinDate;
     }
 
-    public Timestamp getCheckoutDate() {
+    public Date getCheckoutDate() {
         return checkoutDate;
     }
 
-    public void setCheckoutDate(Timestamp checkoutDate) {
+    public void setCheckoutDate(Date checkoutDate) {
         this.checkoutDate = checkoutDate;
     }
 
@@ -94,19 +105,19 @@ public class Booking {
         this.status = status;
     }
 
-    public Timestamp getUpdatedAt() {
+    public Date getUpdatedAt() {
         return updatedAt;
     }
 
-    public void setUpdatedAt(Timestamp updatedAt) {
+    public void setUpdatedAt(Date updatedAt) {
         this.updatedAt = updatedAt;
     }
 
-    public Timestamp getCreatedAt() {
+    public Date getCreatedAt() {
         return createdAt;
     }
 
-    public void setCreatedAt(Timestamp createdAt) {
+    public void setCreatedAt(Date createdAt) {
         this.createdAt = createdAt;
     }
 }

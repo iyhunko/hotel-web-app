@@ -2,18 +2,18 @@ package com.iyhunko.hotel.controllers;
 
 import com.iyhunko.hotel.config.CustomUserDetails;
 import com.iyhunko.hotel.models.Booking;
+import com.iyhunko.hotel.models.Request;
 import com.iyhunko.hotel.services.BookingService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.sql.Timestamp;
+import java.util.Date;
 import java.util.List;
 
 @Controller
@@ -22,11 +22,25 @@ public class BookingController {
     @Autowired
     private BookingService service;
 
-    @RequestMapping("/bookings")
-    public String showListPage(Model model) {
-        List<Booking> bookings = service.all();
+    int PAGINATION_LIMIT = 5;
 
-        model.addAttribute("bookings", bookings);
+    @RequestMapping("/bookings")
+    public String index(
+            @RequestParam(value = "page", required = false, defaultValue = "1") int page,
+            @RequestParam(value = "sortBy", required = false, defaultValue = "id") String sortBy,
+            @RequestParam(value = "sortOrder", required = false, defaultValue = "DESC") String sortOrder,
+            Model model
+    ) {
+        Page<Booking> requestsWithPagination = service.getWithPagination(page, PAGINATION_LIMIT, sortBy, sortOrder);
+
+        model.addAttribute("bookings", requestsWithPagination.getContent());
+        model.addAttribute("currentPage", page);
+        model.addAttribute("totalPages", requestsWithPagination.getTotalPages());
+        model.addAttribute("totalItems", requestsWithPagination.getTotalElements());
+        model.addAttribute("sortBy", sortBy);
+        model.addAttribute("sortOrder", sortOrder);
+        model.addAttribute("reverseSortOrder", sortOrder.equalsIgnoreCase("asc") ? "desc" : "asc");
+        model.addAttribute("pageUri", "bookings");
 
         return "bookings";
     }
@@ -45,10 +59,8 @@ public class BookingController {
             @ModelAttribute("booking") Booking booking,
             @AuthenticationPrincipal CustomUserDetails currentUser
     ) {
-        booking.setCreatedAt(new Timestamp(System.currentTimeMillis()));
-        booking.setUpdatedAt(new Timestamp(System.currentTimeMillis()));
-        booking.setCheckinDate(new Timestamp(System.currentTimeMillis()));
-        booking.setCheckoutDate(new Timestamp(System.currentTimeMillis()));
+        booking.setCheckinDate(new Date(System.currentTimeMillis()));
+        booking.setCheckoutDate(new Date(System.currentTimeMillis()));
         booking.setUserId(currentUser.getUser().getId());
 
         service.save(booking);

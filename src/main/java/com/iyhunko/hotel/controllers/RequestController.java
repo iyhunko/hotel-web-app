@@ -55,8 +55,6 @@ public class RequestController {
             @ModelAttribute("request") Request request,
             @AuthenticationPrincipal CustomUserDetails currentUser
     ) {
-//        request.setCreatedAt(new Timestamp(System.currentTimeMillis()));
-//        request.setUpdatedAt(new Timestamp(System.currentTimeMillis()));
         request.setCheckinDate(new Date(System.currentTimeMillis()));
         request.setCheckoutDate(new Date(System.currentTimeMillis()));
         request.setUserId(currentUser.getUser().getId());

@@ -35,11 +35,11 @@
                     <td th:text="${booking.userId}"></td>
                     <td th:text="${booking.roomId}"></td>
                     <td th:text="${booking.paymentId}"></td>
-                    <td th:text="${booking.checkinDate}"></td>
-                    <td th:text="${booking.checkoutDate}"></td>
+                    <td th:text="${#dates.format(booking.checkinDate, 'yyyy-MM-dd')}"></td>
+                    <td th:text="${#dates.format(booking.checkoutDate, 'yyyy-MM-dd')}"></td>
                     <td th:text="${booking.status}"></td>
-                    <td th:text="${booking.createdAt}"></td>
-                    <td th:text="${booking.updatedAt}"></td>
+                    <td th:text="${#dates.format(booking.createdAt, 'yyyy-MM-dd')}"></td>
+                    <td th:text="${#dates.format(booking.updatedAt, 'yyyy-MM-dd')}"></td>
 
                     <td>
                         <div class="btn-group" role="group" aria-label="Actions">
@@ -54,6 +54,8 @@
                 </tr>
                 </tbody>
             </table>
+
+            <pagination th:insert="blocks/pagination :: pagination"></pagination>
         </div>
     </div>
 </div>

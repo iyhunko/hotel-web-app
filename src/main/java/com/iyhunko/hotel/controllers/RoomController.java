@@ -1,7 +1,6 @@
 package com.iyhunko.hotel.controllers;
 
 import com.iyhunko.hotel.models.Room;
-import com.iyhunko.hotel.models.User;
 import com.iyhunko.hotel.services.RoomService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -11,16 +10,14 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.sql.Timestamp;
-import java.util.List;
 import java.util.Map;
 
 @Controller
 public class RoomController {
 
+    int PAGINATION_LIMIT = 5;
     @Autowired
     private RoomService service;
-
-    int PAGINATION_LIMIT = 5;
 
     @RequestMapping("/rooms")
     public String index(
@@ -28,10 +25,9 @@ public class RoomController {
             @RequestParam(value = "sortBy", required = false, defaultValue = "id") String sortBy,
             @RequestParam(value = "sortOrder", required = false, defaultValue = "DESC") String sortOrder,
             Model model,
-            @RequestParam Map<String,String> requestParams
+            @RequestParam Map<String, String> requestParams
     ) {
         Page<Room> roomsWithPagination = service.getWithPagination(page, PAGINATION_LIMIT, sortBy, sortOrder, requestParams);
-
         model.addAttribute("rooms", roomsWithPagination.getContent());
         model.addAttribute("currentPage", page);
         model.addAttribute("totalPages", roomsWithPagination.getTotalPages());
@@ -40,6 +36,16 @@ public class RoomController {
         model.addAttribute("sortOrder", sortOrder);
         model.addAttribute("reverseSortOrder", sortOrder.equalsIgnoreCase("asc") ? "desc" : "asc");
         model.addAttribute("pageUri", "rooms");
+
+        // for filters:
+        model.addAttribute(
+                "filtersQuery",
+                "&priceFrom=" + requestParams.get("priceFrom")
+                        + "&priceTo=" + requestParams.get("priceTo")
+                        + "&roomClass=" + requestParams.get("roomClass")
+                        + "&roomsQuantity=" + requestParams.get("roomsQuantity")
+                        + "&status=" + requestParams.get("status")
+        );
 
         return "rooms";
     }

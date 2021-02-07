@@ -12,6 +12,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import java.sql.Timestamp;
 import java.util.List;
+import java.util.Map;
 
 @Controller
 public class RoomController {
@@ -26,9 +27,10 @@ public class RoomController {
             @RequestParam(value = "page", required = false, defaultValue = "1") int page,
             @RequestParam(value = "sortBy", required = false, defaultValue = "id") String sortBy,
             @RequestParam(value = "sortOrder", required = false, defaultValue = "DESC") String sortOrder,
-            Model model
+            Model model,
+            @RequestParam Map<String,String> requestParams
     ) {
-        Page<Room> roomsWithPagination = service.getWithPagination(page, PAGINATION_LIMIT, sortBy, sortOrder);
+        Page<Room> roomsWithPagination = service.getWithPagination(page, PAGINATION_LIMIT, sortBy, sortOrder, requestParams);
 
         model.addAttribute("rooms", roomsWithPagination.getContent());
         model.addAttribute("currentPage", page);

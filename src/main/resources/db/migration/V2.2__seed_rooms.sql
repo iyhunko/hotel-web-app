@@ -7,7 +7,7 @@ insert into `rooms`
    )
  VALUES
  (
- 1, '111', 'free', 'Economy Double Room', 'View:   Independence Square or Instytutska', '30.24', '1',
+ 1, '111', 'FREE', 'Economy Double Room', 'View:   Independence Square or Instytutska', '30.24', '1',
   'A', '19', '1', '1', '0',
    '1', '0', '0', '1', '0',
     '0', '0'
@@ -22,7 +22,7 @@ insert into `rooms`
    )
  VALUES
  (
- 2, '222', 'free', 'Standard Double Room', 'The room is equipped with comfortable furniture, a double bed, bathroom with modern facilities.', '35.64', '2',
+ 2, '222', 'FREE', 'Standard Double Room', 'The room is equipped with comfortable furniture, a double bed, bathroom with modern facilities.', '35.64', '2',
   'B', '25', '1', '1', '0',
    '1', '0', '1', '1', '0',
     '0', '0'
@@ -37,7 +37,7 @@ insert into `rooms`
    )
  VALUES
  (
- 3, '333', 'booked', 'Suite', 'Spacious Suite.
+ 3, '333', 'BOOKED', 'Suite', 'Spacious Suite.
 Suite offers a large living room with a couch and a cozy bedroom.
 -daily towel change
 -change of bed linen - once in 3 days
@@ -56,7 +56,7 @@ The rooms can slightly differ in interior.', '73.44', '3',
    )
  VALUES
  (
- 4, '434', 'free', 'Business Suite', 'Three-room suite with panoramic views of Independence Square.
+ 4, '434', 'FREE', 'Business Suite', 'Three-room suite with panoramic views of Independence Square.
 There are a bedroom with «king size» bed, study with a desk and chair and a cozy living room in this category.
 -daily towel change
 -change of bed linen - once in 3 days
@@ -75,7 +75,7 @@ The rooms can slightly differ in interior.', '78.84', '3',
    )
  VALUES
  (
- 5, '535', 'occupied', 'Executive Suite', 'Exclusive suite with panoramic views of Independence Square. There are two bedrooms, two bathrooms, a spacious living room with fireplace, sofa and comfortable chairs.
+ 5, '535', 'OCCUPIED', 'Executive Suite', 'Exclusive suite with panoramic views of Independence Square. There are two bedrooms, two bathrooms, a spacious living room with fireplace, sofa and comfortable chairs.
 -daily towel change
 -change of bed linen - once in 3 days
 The rooms can slightly differ in interior.', '103.14', '3',
@@ -95,7 +95,7 @@ insert into `rooms`
    )
  VALUES
  (
- 6, '112', 'occupied', 'Economy Double Room 2', 'View:   Independence Square or Instytutska', '30.24', '1',
+ 6, '112', 'OCCUPIED', 'Economy Double Room 2', 'View:   Independence Square or Instytutska', '30.24', '1',
   'A', '19', '1', '1', '0',
    '1', '0', '0', '1', '0',
     '0', '0'
@@ -110,7 +110,7 @@ insert into `rooms`
    )
  VALUES
  (
- 7, '223', 'occupied', 'Standard Double Room 2', 'The room is equipped with comfortable furniture, a double bed, bathroom with modern facilities.', '35.64', '2',
+ 7, '223', 'OCCUPIED', 'Standard Double Room 2', 'The room is equipped with comfortable furniture, a double bed, bathroom with modern facilities.', '35.64', '2',
   'B', '25', '1', '1', '0',
    '1', '0', '1', '1', '0',
     '0', '0'
@@ -125,7 +125,7 @@ insert into `rooms`
    )
  VALUES
  (
- 8, '334', 'occupied', 'Suite 2', 'Spacious Suite.
+ 8, '334', 'OCCUPIED', 'Suite 2', 'Spacious Suite.
 Suite offers a large living room with a couch and a cozy bedroom.
 -daily towel change
 -change of bed linen - once in 3 days
@@ -144,7 +144,7 @@ The rooms can slightly differ in interior.', '73.44', '3',
    )
  VALUES
  (
- 9, '434', 'booked', 'Business Suite 2', 'Three-room suite with panoramic views of Independence Square.
+ 9, '434', 'BOOKED', 'Business Suite 2', 'Three-room suite with panoramic views of Independence Square.
 There are a bedroom with «king size» bed, study with a desk and chair and a cozy living room in this category.
 -daily towel change
 -change of bed linen - once in 3 days
@@ -163,7 +163,7 @@ The rooms can slightly differ in interior.', '78.84', '3',
    )
  VALUES
  (
- 10, '535', 'booked', 'Executive Suite 2', 'Exclusive suite with panoramic views of Independence Square. There are two bedrooms, two bathrooms, a spacious living room with fireplace, sofa and comfortable chairs.
+ 10, '535', 'BOOKED', 'Executive Suite 2', 'Exclusive suite with panoramic views of Independence Square. There are two bedrooms, two bathrooms, a spacious living room with fireplace, sofa and comfortable chairs.
 -daily towel change
 -change of bed linen - once in 3 days
 The rooms can slightly differ in interior.', '103.14', '3',
@@ -183,7 +183,7 @@ insert into `rooms`
    )
  VALUES
  (
- 11, '113', 'booked', 'Economy Double Room 3', 'View:   Independence Square or Instytutska', '30.24', '1',
+ 11, '113', 'BOOKED', 'Economy Double Room 3', 'View:   Independence Square or Instytutska', '30.24', '1',
   'A', '19', '1', '1', '0',
    '1', '0', '0', '1', '0',
     '0', '0'
@@ -198,7 +198,7 @@ insert into `rooms`
    )
  VALUES
  (
- 12, '224', 'free', 'Standard Double Room 3', 'The room is equipped with comfortable furniture, a double bed, bathroom with modern facilities.', '35.64', '2',
+ 12, '224', 'FREE', 'Standard Double Room 3', 'The room is equipped with comfortable furniture, a double bed, bathroom with modern facilities.', '35.64', '2',
   'B', '25', '1', '1', '0',
    '1', '0', '1', '1', '0',
     '0', '0'
@@ -213,7 +213,7 @@ insert into `rooms`
    )
  VALUES
  (
- 13, '335', 'locked', 'Suite 3', 'Spacious Suite.
+ 13, '335', 'LOCKED', 'Suite 3', 'Spacious Suite.
 Suite offers a large living room with a couch and a cozy bedroom.
 -daily towel change
 -change of bed linen - once in 3 days
@@ -232,7 +232,7 @@ The rooms can slightly differ in interior.', '73.44', '3',
    )
  VALUES
  (
- 14, '455', 'locked', 'Business Suite 3', 'Three-room suite with panoramic views of Independence Square.
+ 14, '455', 'LOCKED', 'Business Suite 3', 'Three-room suite with panoramic views of Independence Square.
 There are a bedroom with «king size» bed, study with a desk and chair and a cozy living room in this category.
 -daily towel change
 -change of bed linen - once in 3 days
@@ -251,7 +251,7 @@ The rooms can slightly differ in interior.', '78.84', '3',
    )
  VALUES
  (
- 15, '536', 'locked', 'Executive Suite 3', 'Exclusive suite with panoramic views of Independence Square. There are two bedrooms, two bathrooms, a spacious living room with fireplace, sofa and comfortable chairs.
+ 15, '536', 'LOCKED', 'Executive Suite 3', 'Exclusive suite with panoramic views of Independence Square. There are two bedrooms, two bathrooms, a spacious living room with fireplace, sofa and comfortable chairs.
 -daily towel change
 -change of bed linen - once in 3 days
 The rooms can slightly differ in interior.', '103.14', '3',
@@ -271,7 +271,7 @@ insert into `rooms`
    )
  VALUES
  (
- 16, '114', 'free', 'Economy Double Room 4', 'View:   Independence Square or Instytutska', '30.24', '1',
+ 16, '114', 'FREE', 'Economy Double Room 4', 'View:   Independence Square or Instytutska', '30.24', '1',
   'A', '19', '1', '1', '0',
    '1', '0', '0', '1', '0',
     '0', '0'
@@ -286,7 +286,7 @@ insert into `rooms`
    )
  VALUES
  (
- 17, '225', 'free', 'Standard Double Room 4', 'The room is equipped with comfortable furniture, a double bed, bathroom with modern facilities.', '35.64', '2',
+ 17, '225', 'FREE', 'Standard Double Room 4', 'The room is equipped with comfortable furniture, a double bed, bathroom with modern facilities.', '35.64', '2',
   'B', '25', '1', '1', '0',
    '1', '0', '1', '1', '0',
     '0', '0'
@@ -301,7 +301,7 @@ insert into `rooms`
    )
  VALUES
  (
-18, '335', 'booked', 'Suite 4', 'Spacious Suite.
+18, '335', 'BOOKED', 'Suite 4', 'Spacious Suite.
 Suite offers a large living room with a couch and a cozy bedroom.
 -daily towel change
 -change of bed linen - once in 3 days
@@ -320,7 +320,7 @@ The rooms can slightly differ in interior.', '73.44', '3',
    )
  VALUES
  (
- 19, '456', 'locked', 'Business Suite 4', 'Three-room suite with panoramic views of Independence Square.
+ 19, '456', 'LOCKED', 'Business Suite 4', 'Three-room suite with panoramic views of Independence Square.
 There are a bedroom with «king size» bed, study with a desk and chair and a cozy living room in this category.
 -daily towel change
 -change of bed linen - once in 3 days
@@ -339,7 +339,7 @@ The rooms can slightly differ in interior.', '78.84', '3',
    )
  VALUES
  (
- 20, '537', 'free', 'Executive Suite 4', 'Exclusive suite with panoramic views of Independence Square. There are two bedrooms, two bathrooms, a spacious living room with fireplace, sofa and comfortable chairs.
+ 20, '537', 'FREE', 'Executive Suite 4', 'Exclusive suite with panoramic views of Independence Square. There are two bedrooms, two bathrooms, a spacious living room with fireplace, sofa and comfortable chairs.
 -daily towel change
 -change of bed linen - once in 3 days
 The rooms can slightly differ in interior.', '103.14', '3',
@@ -359,7 +359,7 @@ insert into `rooms`
    )
  VALUES
  (
-21, '115', 'booked', 'Economy Double Room 5', 'View:   Independence Square or Instytutska', '30.24', '1',
+21, '115', 'BOOKED', 'Economy Double Room 5', 'View:   Independence Square or Instytutska', '30.24', '1',
   'A', '19', '1', '1', '0',
    '1', '0', '0', '1', '0',
     '0', '0'
@@ -374,7 +374,7 @@ insert into `rooms`
    )
  VALUES
  (
- 22, '226', 'locked', 'Standard Double Room 5', 'The room is equipped with comfortable furniture, a double bed, bathroom with modern facilities.', '35.64', '2',
+ 22, '226', 'LOCKED', 'Standard Double Room 5', 'The room is equipped with comfortable furniture, a double bed, bathroom with modern facilities.', '35.64', '2',
   'B', '25', '1', '1', '0',
    '1', '0', '1', '1', '0',
     '0', '0'
@@ -389,7 +389,7 @@ insert into `rooms`
    )
  VALUES
  (
- 23, '336', 'free', 'Suite 5', 'Spacious Suite.
+ 23, '336', 'FREE', 'Suite 5', 'Spacious Suite.
 Suite offers a large living room with a couch and a cozy bedroom.
 -daily towel change
 -change of bed linen - once in 3 days
@@ -408,7 +408,7 @@ The rooms can slightly differ in interior.', '73.44', '3',
    )
  VALUES
  (
- 24, '457', 'free', 'Business Suite 5', 'Three-room suite with panoramic views of Independence Square.
+ 24, '457', 'FREE', 'Business Suite 5', 'Three-room suite with panoramic views of Independence Square.
 There are a bedroom with «king size» bed, study with a desk and chair and a cozy living room in this category.
 -daily towel change
 -change of bed linen - once in 3 days
@@ -427,7 +427,7 @@ The rooms can slightly differ in interior.', '78.84', '3',
    )
  VALUES
  (
- 25, '538', 'booked', 'Executive Suite 5', 'Exclusive suite with panoramic views of Independence Square. There are two bedrooms, two bathrooms, a spacious living room with fireplace, sofa and comfortable chairs.
+ 25, '538', 'BOOKED', 'Executive Suite 5', 'Exclusive suite with panoramic views of Independence Square. There are two bedrooms, two bathrooms, a spacious living room with fireplace, sofa and comfortable chairs.
 -daily towel change
 -change of bed linen - once in 3 days
 The rooms can slightly differ in interior.', '103.14', '3',

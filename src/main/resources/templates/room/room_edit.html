@@ -23,11 +23,24 @@
         >
             <input type="hidden" th:field="*{id}"/>
             <div class="form-group row">
-                <label class="col-form-label col-4">Number</label>
+                <label class="col-form-label col-4" for="number">Number</label>
                 <div class="col-8">
                     <input type="text" class="form-control" th:field="*{number}" required
-                           minlength="1" maxlength="45"
+                           minlength="1" maxlength="45" id="number"
                     />
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label class="col-form-label col-4" for="status">Status</label>
+                <div class="col-8">
+                    <select th:field="*{status}" class="form-control" name="status" id="status">
+                        <option th:each="roomStatus : ${roomStatuses}"
+                                th:text="${roomStatus.name}"
+                                th:value="${roomStatus}"
+                                th:selected="${roomStatus == status}"
+                        ></option>
+                    </select>
                 </div>
             </div>
 
@@ -53,7 +66,7 @@
                 <label class="col-form-label col-4" for="price">Price</label>
                 <div class="col-8">
                     <input type="number" class="form-control" th:field="*{price}" required
-                           min="0" name="price" id="price"
+                           min="0" name="price" id="price" step=".01"
                     />
                 </div>
             </div>

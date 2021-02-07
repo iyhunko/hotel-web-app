@@ -1,9 +1,11 @@
 package com.iyhunko.hotel.specifications;
 
+import com.iyhunko.hotel.enums.RoomStatus;
 import com.iyhunko.hotel.models.Room;
 import org.springframework.data.jpa.domain.Specification;
 
 import java.util.List;
+import java.util.Locale;
 
 public class RoomSpecification {
     /**
@@ -21,9 +23,9 @@ public class RoomSpecification {
      */
     public static Specification<Room> statusEquals(String status) {
         return (root, query, builder) ->
-                status == null ?
+                (status == null || !RoomStatus.isInEnum(status)) ?
                         builder.conjunction() :
-                        builder.like(root.get("status"), "%" + status + "%");
+                        builder.equal(root.get("status"), RoomStatus.valueOf(status.toUpperCase(Locale.ROOT)));
     }
 
     /**

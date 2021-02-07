@@ -1,5 +1,6 @@
 package com.iyhunko.hotel.controllers;
 
+import com.iyhunko.hotel.enums.RoomStatus;
 import com.iyhunko.hotel.models.Room;
 import com.iyhunko.hotel.services.RoomService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -47,6 +48,9 @@ public class RoomController {
                         + "&status=" + requestParams.get("status")
         );
 
+        model.addAttribute("roomStatuses", RoomStatus.values());
+        model.addAttribute("filterStatus", requestParams.get("status"));
+
         return "room/rooms";
     }
 
@@ -62,9 +66,8 @@ public class RoomController {
 
     @RequestMapping("/rooms/create")
     public String showCreatePage(Model model) {
-        Room room = new Room();
-
-        model.addAttribute("room", room);
+        model.addAttribute("room", new Room());
+        model.addAttribute("roomStatuses", RoomStatus.values());
 
         return "room/room_create";
     }
@@ -78,6 +81,7 @@ public class RoomController {
         Room room = service.find(id);
 
         mav.addObject("room", room);
+        mav.addObject("roomStatuses", RoomStatus.values());
 
         return mav;
     }

@@ -56,12 +56,12 @@
             </div>
             <div class="form-group col-md-3">
                 <label for="statusFilter">Status</label>
-                <select id="statusFilter" class="form-control" name="status">
-                    <option th:selected="(${param.status} == '')" value="">All</option>
-                    <option th:selected="(${param.status} == 'free')" value="free">Free</option>
-                    <option th:selected="(${param.status} == 'booked')" value="booked">Booked</option>
-                    <option th:selected="(${param.status} == 'locked')" value="locked">Locked</option>
-                    <option th:selected="(${param.status} == 'occupied')" value="occupied">Occupied</option>
+                <select class="form-control" name="status" id="statusFilter">
+                    <option th:each="roomStatus : ${roomStatuses}"
+                            th:text="${roomStatus.name}"
+                            th:value="${roomStatus}"
+                            th:selected="${#strings.toUpperCase(roomStatus.name)} == ${filterStatus}"
+                    ></option>
                 </select>
             </div>
         </div>
@@ -126,7 +126,7 @@
                     <td th:text="${room.number}"></td>
                     <td th:text="${room.title}"></td>
                     <td><span th:text="${room.price}"></span>$</td>
-                    <td th:text="${room.status}"></td>
+                    <td th:text="${room.status.name}"></td>
                     <td th:text="${room.roomClass}"></td>
                     <td><span th:text="${room.size}"></span>m<sup>2</sup></td>
                     <td th:text="${room.roomsQuantity}"></td>

@@ -1,9 +1,11 @@
 package com.iyhunko.hotel.models;
 
+import com.iyhunko.hotel.enums.RoomStatus;
+import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.Type;
 
 import javax.persistence.*;
-import java.sql.Timestamp;
+import java.util.Date;
 
 @Entity
 @Table(name = "rooms")
@@ -14,8 +16,9 @@ public class Room {
 
     private String number;
 
+    @Enumerated(EnumType.STRING)
     @Column(name = "status")
-    private String status;
+    private RoomStatus status;
 
     private String title;
 
@@ -72,8 +75,10 @@ public class Room {
     @Column(name = "are_pets_allowed", columnDefinition = "TINYINT")
     private Boolean arePetsAllowed = false;
 
-    @Column(name = "created_at")
-    private Timestamp createdAt;
+    @CreationTimestamp
+    @Temporal(TemporalType.TIMESTAMP)
+    @Column(name = "created_at", updatable = false, nullable = false)
+    private Date createdAt;
 
     public Long getId() {
         return id;
@@ -227,19 +232,19 @@ public class Room {
         this.arePetsAllowed = arePetsAllowed;
     }
 
-    public Timestamp getCreatedAt() {
+    public Date getCreatedAt() {
         return createdAt;
     }
 
-    public void setCreatedAt(Timestamp createdAt) {
+    public void setCreatedAt(Date createdAt) {
         this.createdAt = createdAt;
     }
 
-    public String getStatus() {
+    public RoomStatus getStatus() {
         return status;
     }
 
-    public void setStatus(String status) {
+    public void setStatus(RoomStatus status) {
         this.status = status;
     }
 }

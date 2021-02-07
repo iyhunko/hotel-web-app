@@ -47,7 +47,7 @@ public class RoomController {
                         + "&status=" + requestParams.get("status")
         );
 
-        return "rooms";
+        return "room/rooms";
     }
 
     @RequestMapping(value = "/rooms/save", method = RequestMethod.POST)
@@ -66,14 +66,14 @@ public class RoomController {
 
         model.addAttribute("room", room);
 
-        return "room_create";
+        return "room/room_create";
     }
 
     @RequestMapping("/rooms/{id}/edit")
     public ModelAndView showEditPage(
             @PathVariable(name = "id") Long id
     ) {
-        ModelAndView mav = new ModelAndView("room_edit");
+        ModelAndView mav = new ModelAndView("room/room_edit");
 
         Room room = service.find(id);
 
@@ -86,7 +86,7 @@ public class RoomController {
     public ModelAndView showDetailsPage(
             @PathVariable(name = "id") Long id
     ) {
-        ModelAndView mav = new ModelAndView("room_details");
+        ModelAndView mav = new ModelAndView("room/room_details");
 
         Room room = service.find(id);
 

@@ -56,8 +56,10 @@
                 <label for="statusFilter">Status</label>
                 <select id="statusFilter" class="form-control" name="status">
                     <option selected value="">All</option>
-                    <option value="available">Available</option>
+                    <option value="free">Free</option>
                     <option value="booked">Booked</option>
+                    <option value="locked">Locked</option>
+                    <option value="occupied">Occupied</option>
                 </select>
             </div>
         </div>
@@ -93,7 +95,7 @@
                         <a th:href="@{'/rooms?sortBy=price&sortOrder=' + ${reverseSortOrder}}">Price</a>
                     </th>
                     <th>
-                        <a th:href="@{'/rooms?sortBy=floor&sortOrder=' + ${reverseSortOrder}}">Floor</a>
+                        <a th:href="@{'/rooms?sortBy=status&sortOrder=' + ${reverseSortOrder}}">Status</a>
                     </th>
                     <th>
                         <a th:href="@{'/rooms?sortBy=roomClass&sortOrder=' + ${reverseSortOrder}}">Class</a>
@@ -122,7 +124,7 @@
                     <td th:text="${room.number}"></td>
                     <td th:text="${room.title}"></td>
                     <td><span th:text="${room.price}"></span>$</td>
-                    <td th:text="${room.floor}"></td>
+                    <td th:text="${room.status}"></td>
                     <td th:text="${room.roomClass}"></td>
                     <td><span th:text="${room.size}"></span>m<sup>2</sup></td>
                     <td th:text="${room.roomsQuantity}"></td>

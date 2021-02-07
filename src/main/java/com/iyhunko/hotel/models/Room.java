@@ -14,13 +14,16 @@ public class Room {
 
     private String number;
 
+    @Column(name = "status")
+    private String status;
+
     private String title;
+
+    private Float price;
 
     @Column(nullable = false, columnDefinition = "text")
     @Type(type = "text")
     private String description;
-
-    private Float price;
 
     @Column(columnDefinition = "text")
     @Type(type = "text")
@@ -230,5 +233,13 @@ public class Room {
 
     public void setCreatedAt(Timestamp createdAt) {
         this.createdAt = createdAt;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
     }
 }

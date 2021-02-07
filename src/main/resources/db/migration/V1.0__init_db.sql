@@ -12,8 +12,9 @@ CREATE TABLE `users` (
 CREATE TABLE `rooms` (
   `id` BIGINT(20) UNSIGNED NOT NULL AUTO_INCREMENT,
   `number` VARCHAR(45) NOT NULL COMMENT 'type is varchar because we may have numbers like: 143-A, 13-B...',
+  `status` VARCHAR(255) NOT NULL,
   `title` VARCHAR(255) NOT NULL,
-  `description` TEXT(2000) NULL,
+   `description` TEXT(2000) NULL,
   `price` FLOAT UNSIGNED NOT NULL,
   `photo` TEXT(500) NULL,
   `floor` INT NOT NULL,

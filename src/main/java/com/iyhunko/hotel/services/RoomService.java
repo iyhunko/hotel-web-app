@@ -44,9 +44,9 @@ public class RoomService {
 
         Specification spec = Specification.where(
                 RoomSpecification.classEquals(requestParams.get("roomClass"))
-        )./*and(
+        ).and(
                 RoomSpecification.statusEquals(requestParams.get("status"))
-        ).*/and(
+        ).and(
                 RoomSpecification.roomsQuantityEquals(
                         (requestParams.get("roomsQuantity") != null && !requestParams.get("roomsQuantity").trim().isEmpty())
                                 ? Integer.valueOf(requestParams.get("roomsQuantity"))

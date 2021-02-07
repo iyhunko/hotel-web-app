@@ -3,6 +3,8 @@ package com.iyhunko.hotel.specifications;
 import com.iyhunko.hotel.models.Room;
 import org.springframework.data.jpa.domain.Specification;
 
+import java.util.List;
+
 public class RoomSpecification {
     /**
      * if roomClass == null then specification is ignored

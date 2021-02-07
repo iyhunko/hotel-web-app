@@ -49,6 +49,8 @@ public class RoomController {
         );
 
         model.addAttribute("roomStatuses", RoomStatus.values());
+
+        // TODO: remove after we figure out how to use query param in the th:selected in `statusFilter` select
         model.addAttribute("filterStatus", requestParams.get("status"));
 
         return "room/rooms";

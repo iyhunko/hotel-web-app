@@ -1,13 +1,25 @@
 <div th:fragment="header" xmlns:th="http://www.w3.org/1999/xhtml">
     <div class="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 bg-white border-bottom box-shadow">
-        <h5 class="my-0 mr-md-auto font-weight-normal"><a href="/">Wonderful Hotel</a></h5>
+        <h5 class="my-0 mr-md-auto font-weight-normal"><a href="/"><span class="fa fa-fw fa-home"> </span>Wonderful Hotel</a></h5>
         <nav sec:authorize="isAuthenticated()" class="my-2 my-md-0 mr-md-3">
-            <a class="p-2 text-dark" href="/">[[#{app.nav.home}]]</a>
-            <a class="p-2 text-dark" sec:authorize="hasAnyAuthority('ADMIN')" th:href="@{/users}">[[#{app.nav.users}]]</a>
-            <a class="p-2 text-dark" sec:authorize="hasAnyAuthority('ADMIN')" th:href="@{/rooms}">[[#{app.nav.rooms}]]</a>
-            <a class="p-2 text-dark" sec:authorize="hasAnyAuthority('ADMIN')" th:href="@{/requests}">[[#{app.nav.requests}]]</a>
-            <a class="p-2 text-dark" sec:authorize="hasAnyAuthority('ADMIN')" th:href="@{/bookings}">[[#{app.nav.bookings}]]</a>
-            <a class="p-2 text-dark" sec:authorize="hasAnyAuthority('ADMIN')" th:href="@{/payments}">[[#{app.nav.payments}]]</a>
+            <a class="p-2 text-dark" href="/">
+                <span class="fa fa-fw fa-home"> </span>[[#{app.nav.home}]]
+            </a>
+            <a class="p-2 text-dark" sec:authorize="hasAnyAuthority('ADMIN')" th:href="@{/users}">
+                <span class="fa fa-fw fa-users"> </span>[[#{app.nav.users}]]
+            </a>
+            <a class="p-2 text-dark" sec:authorize="hasAnyAuthority('ADMIN')" th:href="@{/rooms}">
+                <i class="fa fa-fw key"></i>[[#{app.nav.rooms}]]
+            </a>
+            <a class="p-2 text-dark" sec:authorize="hasAnyAuthority('ADMIN')" th:href="@{/requests}">
+                <span class="fa fa-fw fa-calendar "> </span>[[#{app.nav.requests}]]
+            </a>
+            <a class="p-2 text-dark" sec:authorize="hasAnyAuthority('ADMIN')" th:href="@{/bookings}">
+                <span class="fa fa-fw fa-book"> </span>[[#{app.nav.bookings}]]
+            </a>
+            <a class="p-2 text-dark" sec:authorize="hasAnyAuthority('ADMIN')" th:href="@{/payments}">
+                <span class="fa fa-fw fa-dollar"> </span>[[#{app.nav.payments}]]
+            </a>
 
             <a class="p-2 text-dark" href="#" id="localesDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 <span class="flag-icon"
@@ -18,16 +30,23 @@
                 <a class="dropdown-item" th:href="@{?lang=en}"><span class="flag-icon flag-icon-gb"> </span>  English</a>
                 <a class="dropdown-item" th:href="@{?lang=ua}"><span class="flag-icon flag-icon-ua"> </span>  Українська</a>
             </div>
-            <a class="p-2 text-dark" th:href="@{/profile}">[[#{app.nav.profile}]]</a>
+
+            <a class="p-2 text-dark" th:href="@{/profile}">
+                <i class="fa fa-fw fa-user"></i>[[#{app.nav.profile}]]
+            </a>
         </nav>
 
-        <a sec:authorize="!isAuthenticated()" class="btn btn-outline-primary" th:href="@{/register}">[[#{app.nav.register}]]</a>
-<!--        <a class="btn btn-outline-danger" th:href="@{/logout}">Logout</a>-->
+        <a sec:authorize="!isAuthenticated()" class="btn btn-outline-primary" th:href="@{/register}">
+            <i class="fa fa-fw fa-user-plus"></i>[[#{app.nav.register}]]
+        </a>
 
         <form sec:authorize="isAuthenticated()" th:action="@{/logout}" id="logout-form" method="post"></form>
-        <a sec:authorize="isAuthenticated()" class="btn btn-outline-danger" onclick="document.getElementById('logout-form').submit();" href="#">[[#{app.nav.logout}]]</a>
+        <a sec:authorize="isAuthenticated()" class="btn btn-outline-danger" onclick="document.getElementById('logout-form').submit();" href="#">
+            <i class="fa fa-fw fa-sign-out"></i>
+        </a>
 
-<!--        <a class="btn btn-outline-danger" th:href="@{/logout}">Logout</a>-->
-        <a sec:authorize="!isAuthenticated()" class="btn btn-outline-primary" th:href="@{/login}">[[#{app.nav.login}]]</a>
+        <a sec:authorize="!isAuthenticated()" class="btn btn-outline-primary" th:href="@{/login}">
+            <i class="fa fa-fw fa-sign-in"></i>[[#{app.nav.login}]]
+        </a>
     </div>
 </div>

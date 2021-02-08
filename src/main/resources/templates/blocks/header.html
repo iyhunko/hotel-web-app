@@ -1,23 +1,33 @@
 <div th:fragment="header" xmlns:th="http://www.w3.org/1999/xhtml">
     <div class="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 bg-white border-bottom box-shadow">
-        <h5 class="my-0 mr-md-auto font-weight-normal"><a href="/">Hotel</a></h5>
+        <h5 class="my-0 mr-md-auto font-weight-normal"><a href="/">Wonderful Hotel</a></h5>
         <nav sec:authorize="isAuthenticated()" class="my-2 my-md-0 mr-md-3">
-            <a class="p-2 text-dark" href="/">Home</a>
-            <a class="p-2 text-dark" sec:authorize="hasAnyAuthority('ADMIN')" th:href="@{/users}">Users</a>
-            <a class="p-2 text-dark" sec:authorize="hasAnyAuthority('ADMIN')" th:href="@{/rooms}">Rooms</a>
-            <a class="p-2 text-dark" sec:authorize="hasAnyAuthority('ADMIN')" th:href="@{/requests}">Requests</a>
-            <a class="p-2 text-dark" sec:authorize="hasAnyAuthority('ADMIN')" th:href="@{/bookings}">Bookings</a>
-            <a class="p-2 text-dark" sec:authorize="hasAnyAuthority('ADMIN')" th:href="@{/payments}">Payments</a>
-            <a class="p-2 text-dark" th:href="@{/profile}">Profile</a>
+            <a class="p-2 text-dark" href="/">[[#{app.nav.home}]]</a>
+            <a class="p-2 text-dark" sec:authorize="hasAnyAuthority('ADMIN')" th:href="@{/users}">[[#{app.nav.users}]]</a>
+            <a class="p-2 text-dark" sec:authorize="hasAnyAuthority('ADMIN')" th:href="@{/rooms}">[[#{app.nav.rooms}]]</a>
+            <a class="p-2 text-dark" sec:authorize="hasAnyAuthority('ADMIN')" th:href="@{/requests}">[[#{app.nav.requests}]]</a>
+            <a class="p-2 text-dark" sec:authorize="hasAnyAuthority('ADMIN')" th:href="@{/bookings}">[[#{app.nav.bookings}]]</a>
+            <a class="p-2 text-dark" sec:authorize="hasAnyAuthority('ADMIN')" th:href="@{/payments}">[[#{app.nav.payments}]]</a>
+
+            <a class="p-2 text-dark" href="#" id="localesDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <span class="flag-icon"
+                      th:classAppend="__${#locale}__=='en'?'flag-icon-gb':'flag-icon-ua'"
+                > </span> <span th:text="__${#locale}__=='en'?'English':'Українська'"></span>
+            </a>
+            <div class="dropdown-menu" aria-labelledby="localesDropdown">
+                <a class="dropdown-item" th:href="@{?lang=en}"><span class="flag-icon flag-icon-gb"> </span>  English</a>
+                <a class="dropdown-item" th:href="@{?lang=ua}"><span class="flag-icon flag-icon-ua"> </span>  Українська</a>
+            </div>
+            <a class="p-2 text-dark" th:href="@{/profile}">[[#{app.nav.profile}]]</a>
         </nav>
 
-        <a sec:authorize="!isAuthenticated()" class="btn btn-outline-primary" th:href="@{/register}">Register</a>
+        <a sec:authorize="!isAuthenticated()" class="btn btn-outline-primary" th:href="@{/register}">[[#{app.nav.register}]]</a>
 <!--        <a class="btn btn-outline-danger" th:href="@{/logout}">Logout</a>-->
 
         <form sec:authorize="isAuthenticated()" th:action="@{/logout}" id="logout-form" method="post"></form>
-        <a sec:authorize="isAuthenticated()" class="btn btn-outline-danger" onclick="document.getElementById('logout-form').submit();" href="#">Logout</a>
+        <a sec:authorize="isAuthenticated()" class="btn btn-outline-danger" onclick="document.getElementById('logout-form').submit();" href="#">[[#{app.nav.logout}]]</a>
 
 <!--        <a class="btn btn-outline-danger" th:href="@{/logout}">Logout</a>-->
-        <a sec:authorize="!isAuthenticated()" class="btn btn-outline-primary" th:href="@{/login}">Login</a>
+        <a sec:authorize="!isAuthenticated()" class="btn btn-outline-primary" th:href="@{/login}">[[#{app.nav.login}]]</a>
     </div>
 </div>

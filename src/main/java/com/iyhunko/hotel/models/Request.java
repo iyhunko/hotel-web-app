@@ -82,13 +82,13 @@ public class Request {
 
     @UpdateTimestamp
     @Temporal(TemporalType.TIMESTAMP)
-    @Column(name = "updated_at")
-    private Date updatedAt = new Date();
+    @Column(name = "updated_at", nullable = false)
+    private Date updatedAt;
 
     @CreationTimestamp
     @Temporal(TemporalType.TIMESTAMP)
-    @Column(name = "created_at")
-    private Date createdAt = new Date();
+    @Column(name = "created_at", updatable = false, nullable = false)
+    private Date createdAt;
 
     public Date getUpdatedAt() {
         return updatedAt;

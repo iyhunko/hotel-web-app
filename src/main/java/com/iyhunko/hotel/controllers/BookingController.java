@@ -3,7 +3,9 @@ package com.iyhunko.hotel.controllers;
 import com.iyhunko.hotel.config.CustomUserDetails;
 import com.iyhunko.hotel.models.Booking;
 import com.iyhunko.hotel.models.Request;
+import com.iyhunko.hotel.models.Room;
 import com.iyhunko.hotel.services.BookingService;
+import com.iyhunko.hotel.services.RoomService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
@@ -13,6 +15,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.sql.Timestamp;
+import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 
@@ -21,6 +24,8 @@ public class BookingController {
 
     @Autowired
     private BookingService service;
+    @Autowired
+    private RoomService roomService;
 
     int PAGINATION_LIMIT = 5;
 
@@ -61,6 +66,7 @@ public class BookingController {
     ) {
         booking.setCheckinDate(new Date(System.currentTimeMillis()));
         booking.setCheckoutDate(new Date(System.currentTimeMillis()));
+        booking.setUpdatedAt(new Date(System.currentTimeMillis()));
         booking.setUserId(currentUser.getUser().getId());
 
         service.save(booking);
@@ -74,7 +80,9 @@ public class BookingController {
 
         Booking booking = service.find(id);
 
+
         mav.addObject("booking", booking);
+        mav.addObject("rooms",  roomService.all());
 
         return mav;
     }

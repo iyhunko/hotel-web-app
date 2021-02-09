@@ -25,7 +25,7 @@
                         <a th:href="@{'/bookings?sortBy=userId&sortOrder=' + ${reverseSortOrder}}">User ID</a>
                     </th>
                     <th>
-                        <a th:href="@{'/bookings?sortBy=roomId&sortOrder=' + ${reverseSortOrder}}">Room ID</a>
+                        <a th:href="@{'/bookings?sortBy=roomId&sortOrder=' + ${reverseSortOrder}}">Room</a>
                     </th>
                     <th>
                         <a th:href="@{'/bookings?sortBy=paymentId&sortOrder=' + ${reverseSortOrder}}">Payment ID</a>
@@ -51,8 +51,12 @@
                 <tbody>
                 <tr th:each="booking: ${bookings}">
                     <td th:text="${booking.id}"></td>
-                    <td th:text="${booking.userId}"></td>
-                    <td th:text="${booking.roomId}"></td>
+                    <td>
+                        <a th:href="${ '/rooms/'+ booking.user.id + '/details'}" th:text="${booking.user.fullname}"></a>
+                    </td>
+                    <td>
+                        <a th:href="${ '/rooms/'+ booking.room.id + '/details'}" th:text="${booking.room.title}"></a>
+                    </td>
                     <td th:text="${booking.paymentId}"></td>
                     <td th:text="${#dates.format(booking.checkinDate, 'yyyy-MM-dd')}"></td>
                     <td th:text="${#dates.format(booking.checkoutDate, 'yyyy-MM-dd')}"></td>

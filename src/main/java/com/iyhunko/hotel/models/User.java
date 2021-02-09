@@ -78,6 +78,10 @@ public class User {
         this.lastname = lastname;
     }
 
+    public String getFullname() {
+        return this.firstname + " " + this.lastname;
+    }
+
     public Long getId() {
         return id;
     }

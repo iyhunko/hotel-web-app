@@ -26,9 +26,13 @@
             <div class="form-group row">
                 <label class="col-form-label col-4" for="roomId">Room</label>
                 <div class="col-8">
-                    <input type="number" class="form-control" th:field="*{roomId}" required
-                           min="0" name="roomId" id="roomId"
-                    />
+                    <select th:field="*{room}" class="form-control" name="roomId" id="roomId">
+                        <option th:each="room : ${rooms}"
+                                th:text="${room.title}"
+                                th:value="${room.id}"
+                                th:selected="${room.id == booking.roomId}"
+                        ></option>
+                    </select>
                 </div>
             </div>
 

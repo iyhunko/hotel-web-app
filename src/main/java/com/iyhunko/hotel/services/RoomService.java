@@ -20,7 +20,7 @@ public class RoomService {
     private RoomRepository repository;
 
     public List<Room> all() {
-        return (List<Room>) repository.findAll();
+        return repository.findAll();
     }
 
     public void save(Room room) {

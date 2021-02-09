@@ -28,3 +28,10 @@ a:hover {
     padding-left: 10px;
     border-radius: 5px;
 }
+
+tbody a {
+    color: #1b9ed4;
+}
+tbody a:hover {
+    color: #3552e4;
+}

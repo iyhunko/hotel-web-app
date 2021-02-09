@@ -20,6 +20,7 @@ import java.util.Date;
 import java.util.List;
 
 @Controller
+@RequestMapping("/bookings")
 public class BookingController {
 
     @Autowired
@@ -29,7 +30,6 @@ public class BookingController {
 
     int PAGINATION_LIMIT = 5;
 
-    @RequestMapping("/bookings")
     public String index(
             @RequestParam(value = "page", required = false, defaultValue = "1") int page,
             @RequestParam(value = "sortBy", required = false, defaultValue = "id") String sortBy,
@@ -50,7 +50,7 @@ public class BookingController {
         return "booking/bookings";
     }
 
-    @RequestMapping("/bookings/create")
+    @GetMapping("/create")
     public String showCreatePage(Model model) {
         Booking booking = new Booking();
 
@@ -59,7 +59,7 @@ public class BookingController {
         return "booking/booking_create";
     }
 
-    @RequestMapping(value = "/bookings/save", method = RequestMethod.POST)
+    @RequestMapping(value = "/save", method = RequestMethod.POST)
     public String save(
             @ModelAttribute("booking") Booking booking,
             @AuthenticationPrincipal CustomUserDetails currentUser
@@ -74,12 +74,11 @@ public class BookingController {
         return "redirect:/bookings";
     }
 
-    @RequestMapping("/bookings/{id}/edit")
-    public ModelAndView showEditPage(@PathVariable(name = "id") Long id) {
+    @GetMapping("/{id}/edit")
+    public ModelAndView showEditPage(@PathVariable("id") Long id) {
         ModelAndView mav = new ModelAndView("booking/booking_edit");
 
         Booking booking = service.find(id);
-
 
         mav.addObject("booking", booking);
         mav.addObject("rooms",  roomService.all());
@@ -87,7 +86,7 @@ public class BookingController {
         return mav;
     }
 
-    @RequestMapping("/bookings/{id}/details")
+    @GetMapping("/{id}/details")
     public ModelAndView showDetailsPage(
             @PathVariable(name = "id") Long id
     ) {
@@ -100,8 +99,8 @@ public class BookingController {
         return mav;
     }
 
-    @RequestMapping("/bookings/{id}/delete")
-    public String delete(@PathVariable(name = "id") Long id) {
+    @GetMapping("/{id}/delete")
+    public String delete(@PathVariable("id") Long id) {
         service.delete(id);
 
         return "redirect:/bookings";

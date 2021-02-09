@@ -2,6 +2,7 @@ package com.iyhunko.hotel.controllers;
 
 import com.iyhunko.hotel.config.CustomUserDetails;
 import com.iyhunko.hotel.models.Request;
+import com.iyhunko.hotel.services.BookingService;
 import com.iyhunko.hotel.services.RequestService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -17,8 +18,12 @@ import java.sql.Date;
 public class RequestController {
 
     int PAGINATION_LIMIT = 5;
+
     @Autowired
     private RequestService service;
+
+    @Autowired
+    private BookingService bookingService;
 
     @RequestMapping("/requests")
     public String index(
@@ -57,7 +62,7 @@ public class RequestController {
     ) {
         request.setCheckinDate(new Date(System.currentTimeMillis()));
         request.setCheckoutDate(new Date(System.currentTimeMillis()));
-        request.setUserId(currentUser.getUser().getId());
+        request.setUser(currentUser.getUser());
 
         service.save(request);
 
@@ -71,6 +76,7 @@ public class RequestController {
         Request request = service.find(id);
 
         mav.addObject("request", request);
+        mav.addObject("bookings", bookingService.all());
 
         return mav;
     }

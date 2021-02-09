@@ -16,15 +16,16 @@ public class Request {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "user_id", insertable = false, updatable = false)
-    private Long userId;
-
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "user_id", referencedColumnName = "id")
     private User user;
 
-    @Column(name = "booking_id")
+    @Column(name = "booking_id", insertable = false, updatable = false)
     private Long bookingId;
+
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "booking_id", referencedColumnName = "id")
+    private Booking booking;
 
     @Column(name = "price_from")
     private Float priceFrom;
@@ -116,14 +117,6 @@ public class Request {
 
     public void setId(Long id) {
         this.id = id;
-    }
-
-    public Long getUserId() {
-        return userId;
-    }
-
-    public void setUserId(Long userId) {
-        this.userId = userId;
     }
 
     public Float getPriceFrom() {
@@ -276,5 +269,13 @@ public class Request {
 
     public void setBookingId(Long bookingId) {
         this.bookingId = bookingId;
+    }
+
+    public Booking getBooking() {
+        return booking;
+    }
+
+    public void setBooking(Booking booking) {
+        this.booking = booking;
     }
 }

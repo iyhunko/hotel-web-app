@@ -1,27 +1,31 @@
 <div th:fragment="header" xmlns:th="http://www.w3.org/1999/xhtml">
-    <div class="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 bg-white border-bottom box-shadow">
-        <h5 class="my-0 mr-md-auto font-weight-normal"><a href="/"><span class="fa fa-fw fa-home"> </span>Wonderful Hotel</a></h5>
-        <nav sec:authorize="isAuthenticated()" class="my-2 my-md-0 mr-md-3">
-            <a class="p-2 text-dark" href="/">
+    <nav class="site-header sticky-top py-1 border-bottom box-shadow" style="color: #999!;">
+        <div class="container d-flex flex-column flex-md-row justify-content-between">
+            <a class="py-2 text-wight" href="/">
+                <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="d-block mx-auto"><circle cx="12" cy="12" r="10"></circle><line x1="14.31" y1="8" x2="20.05" y2="17.94"></line><line x1="9.69" y1="8" x2="21.17" y2="8"></line><line x1="7.38" y1="12" x2="13.12" y2="2.06"></line><line x1="9.69" y1="16" x2="3.95" y2="6.06"></line><line x1="14.31" y1="16" x2="2.83" y2="16"></line><line x1="16.62" y1="12" x2="10.88" y2="21.94"></line></svg>
+            </a>
+
+            <a class="py-2 d-none d-md-inline-block" sec:authorize="hasAnyAuthority('ADMIN')" th:href="@{/}">
                 <span class="fa fa-fw fa-home"> </span>[[#{app.nav.home}]]
             </a>
-            <a class="p-2 text-dark" sec:authorize="hasAnyAuthority('ADMIN')" th:href="@{/users}">
+
+            <a class="py-2 d-none d-md-inline-block" sec:authorize="hasAnyAuthority('ADMIN')" th:href="@{/users}">
                 <span class="fa fa-fw fa-users"> </span>[[#{app.nav.users}]]
             </a>
-            <a class="p-2 text-dark" sec:authorize="hasAnyAuthority('ADMIN')" th:href="@{/rooms}">
-                <i class="fa fa-fw key"></i>[[#{app.nav.rooms}]]
+            <a class="py-2 d-none d-md-inline-block" sec:authorize="hasAnyAuthority('ADMIN')" th:href="@{/rooms}">
+                <i class="fa fa-fw fa-key"></i>[[#{app.nav.rooms}]]
             </a>
-            <a class="p-2 text-dark" sec:authorize="hasAnyAuthority('ADMIN')" th:href="@{/requests}">
-                <span class="fa fa-fw fa-calendar "> </span>[[#{app.nav.requests}]]
+            <a class="py-2 d-none d-md-inline-block" sec:authorize="hasAnyAuthority('ADMIN')" th:href="@{/requests}">
+                <span class="fa fa-fw fa-calendar"> </span>[[#{app.nav.requests}]]
             </a>
-            <a class="p-2 text-dark" sec:authorize="hasAnyAuthority('ADMIN')" th:href="@{/bookings}">
+            <a class="py-2 d-none d-md-inline-block" sec:authorize="hasAnyAuthority('ADMIN')" th:href="@{/bookings}">
                 <span class="fa fa-fw fa-book"> </span>[[#{app.nav.bookings}]]
             </a>
-            <a class="p-2 text-dark" sec:authorize="hasAnyAuthority('ADMIN')" th:href="@{/payments}">
+            <a class="py-2 d-none d-md-inline-block" sec:authorize="hasAnyAuthority('ADMIN')" th:href="@{/payments}">
                 <span class="fa fa-fw fa-dollar"> </span>[[#{app.nav.payments}]]
             </a>
 
-            <a class="p-2 text-dark" href="#" id="localesDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <a class="py-2 d-none d-md-inline-block" href="#" id="localesDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 <span class="flag-icon"
                       th:classAppend="__${#locale}__=='en'?'flag-icon-gb':'flag-icon-ua'"
                 > </span> <span th:text="__${#locale}__=='en'?'English':'Українська'"></span>
@@ -31,22 +35,23 @@
                 <a class="dropdown-item" th:href="@{?lang=ua}"><span class="flag-icon flag-icon-ua"> </span>  Українська</a>
             </div>
 
-            <a class="p-2 text-dark" th:href="@{/profile}">
+            <a sec:authorize="isAuthenticated()" class="py-2 d-none d-md-inline-block"  th:href="@{/profile}">
                 <i class="fa fa-fw fa-user"></i>[[#{app.nav.profile}]]
             </a>
-        </nav>
 
-        <a sec:authorize="!isAuthenticated()" class="btn btn-outline-primary" th:href="@{/register}">
-            <i class="fa fa-fw fa-user-plus"></i>[[#{app.nav.register}]]
-        </a>
+            <a sec:authorize="!isAuthenticated()" class="py-2 d-none d-md-inline-block" th:href="@{/register}">
+                <i class="fa fa-fw fa-user-plus"></i>[[#{app.nav.register}]]
+            </a>
 
-        <form sec:authorize="isAuthenticated()" th:action="@{/logout}" id="logout-form" method="post"></form>
-        <a sec:authorize="isAuthenticated()" class="btn btn-outline-danger" onclick="document.getElementById('logout-form').submit();" href="#">
-            <i class="fa fa-fw fa-sign-out"></i>
-        </a>
+            <form sec:authorize="isAuthenticated()" th:action="@{/logout}" id="logout-form" method="post"></form>
+            <a sec:authorize="isAuthenticated()" class="py-2 d-none d-md-inline-block text-danger logout-link" onclick="document.getElementById('logout-form').submit();" href="#">
+                <i class="fa fa-fw fa-sign-out"></i>
+            </a>
 
-        <a sec:authorize="!isAuthenticated()" class="btn btn-outline-primary" th:href="@{/login}">
-            <i class="fa fa-fw fa-sign-in"></i>[[#{app.nav.login}]]
-        </a>
-    </div>
+            <a sec:authorize="!isAuthenticated()" class="py-2 d-none d-md-inline-block text-success" th:href="@{/login}">
+                <i class="fa fa-fw fa-sign-in"></i>[[#{app.nav.login}]]
+            </a>
+
+        </div>
+    </nav>
 </div>

@@ -60,7 +60,11 @@
                 <tbody>
                 <tr th:each="request: ${requests}">
                     <td th:text="${request.id}"></td>
-                    <td><a th:href="${ '/rooms/'+ request.user.id + '/details'}" th:text="${request.user.fullname}"></a></td>
+                    <td>
+                        <a th:href="${ '/users/'+ request.user.id + '/edit'}">
+                            <i class="fa fa-fw fa-edit"></i><span th:text="${request.user.fullname}"></span>
+                        </a>
+                    </td>
                     <td><span th:text="${#numbers.formatDecimal(request.priceFrom, 0, 0)}"></span>$</td>
                     <td><span th:text="${#numbers.formatDecimal(request.priceTo, 0, 0)}"></span>$</td>
                     <td th:text="${#dates.format(request.checkinDate, 'yyyy-MM-dd')}"></td>

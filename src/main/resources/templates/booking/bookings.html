@@ -52,12 +52,18 @@
                 <tr th:each="booking: ${bookings}">
                     <td th:text="${booking.id}"></td>
                     <td>
-                        <a th:href="${ '/rooms/'+ booking.user.id + '/details'}" th:text="${booking.user.fullname}"></a>
+                        <a th:href="${ '/users/'+ booking.user.id + '/edit'}">
+                            <i class="fa fa-fw fa-edit"></i><span th:text="${booking.user.fullname}"></span>
+                        </a>
                     </td>
                     <td>
                         <a th:href="${ '/rooms/'+ booking.room.id + '/details'}" th:text="${booking.room.title}"></a>
                     </td>
-                    <td th:text="${booking.paymentId}"></td>
+                    <td>
+                        <a th:if="${booking.payment != null}" th:href="${ '/payments/'+ booking.payment.id + '/edit'}">
+                            <i class="fa fa-fw fa-edit"></i><span th:text="${booking.payment.id}"></span>
+                        </a>
+                    </td>
                     <td th:text="${#dates.format(booking.checkinDate, 'yyyy-MM-dd')}"></td>
                     <td th:text="${#dates.format(booking.checkoutDate, 'yyyy-MM-dd')}"></td>
                     <td th:text="${booking.status}"></td>

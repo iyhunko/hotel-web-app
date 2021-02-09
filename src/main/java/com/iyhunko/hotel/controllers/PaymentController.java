@@ -38,7 +38,7 @@ public class PaymentController {
         model.addAttribute("reverseSortOrder", sortOrder.equalsIgnoreCase("asc") ? "desc" : "asc");
         model.addAttribute("pageUri", "payments");
 
-        return "payments";
+        return "payment/payments";
     }
 
     @RequestMapping("/payments/create")
@@ -47,7 +47,7 @@ public class PaymentController {
 
         model.addAttribute("payment", payment);
 
-        return "payment_create";
+        return "payment/payment_create";
     }
 
     @RequestMapping(value = "/payments/save", method = RequestMethod.POST)
@@ -67,7 +67,7 @@ public class PaymentController {
 
     @RequestMapping("/payments/{id}/edit")
     public ModelAndView showEditPage(@PathVariable(name = "id") Long id) {
-        ModelAndView mav = new ModelAndView("payment_edit");
+        ModelAndView mav = new ModelAndView("payment/payment_edit");
 
         Payment payment = service.find(id);
 

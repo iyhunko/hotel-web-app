@@ -4,12 +4,12 @@
 }
 
 .site-header a {
-    color: #999;
+    color: #88a5b1;
     transition: ease-in-out color .15s;
 }
 
 a {
-    color: #999;
+    color: #88a5b1;
 }
 
 a:hover {

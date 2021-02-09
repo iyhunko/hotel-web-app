@@ -42,14 +42,14 @@ public class UserController {
         model.addAttribute("reverseSortOrder", sortOrder.equalsIgnoreCase("asc") ? "desc" : "asc");
         model.addAttribute("pageUri", "users");
 
-        return "users";
+        return "user/users";
     }
 
     @GetMapping("/profile")
     public String profile(Model model, @AuthenticationPrincipal CustomUserDetails userDetails) {
         model.addAttribute("user", service.find(userDetails.getUser().getId()));
 
-        return "profile";
+        return "user/profile";
     }
 
     @RequestMapping(value = "/users/profile", method = RequestMethod.POST)
@@ -83,7 +83,7 @@ public class UserController {
 
     @RequestMapping("/users/{id}/edit")
     public ModelAndView showEditPage(@PathVariable(name = "id") Long id) {
-        ModelAndView mav = new ModelAndView("user_edit");
+        ModelAndView mav = new ModelAndView("user/user_edit");
 
         mav.addObject("user", service.find(id));
 

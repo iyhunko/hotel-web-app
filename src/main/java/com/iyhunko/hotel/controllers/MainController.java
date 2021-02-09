@@ -20,19 +20,4 @@ public class MainController {
 
         return "about";
     }
-
-    @GetMapping("/user")
-    public String user(Model model) {
-        model.addAttribute("title", "User page");
-
-        return "user";
-    }
-
-    @GetMapping("/admin")
-    public String admin(Model model) {
-        model.addAttribute("title", "Admin page");
-
-        return "admin";
-    }
-
 }

@@ -42,7 +42,7 @@ public class BookingController {
         model.addAttribute("reverseSortOrder", sortOrder.equalsIgnoreCase("asc") ? "desc" : "asc");
         model.addAttribute("pageUri", "bookings");
 
-        return "bookings";
+        return "booking/bookings";
     }
 
     @RequestMapping("/bookings/create")
@@ -51,7 +51,7 @@ public class BookingController {
 
         model.addAttribute("booking", booking);
 
-        return "booking_create";
+        return "booking/booking_create";
     }
 
     @RequestMapping(value = "/bookings/save", method = RequestMethod.POST)
@@ -70,7 +70,7 @@ public class BookingController {
 
     @RequestMapping("/bookings/{id}/edit")
     public ModelAndView showEditPage(@PathVariable(name = "id") Long id) {
-        ModelAndView mav = new ModelAndView("booking_edit");
+        ModelAndView mav = new ModelAndView("booking/booking_edit");
 
         Booking booking = service.find(id);
 
@@ -83,7 +83,7 @@ public class BookingController {
     public ModelAndView showDetailsPage(
             @PathVariable(name = "id") Long id
     ) {
-        ModelAndView mav = new ModelAndView("booking_details");
+        ModelAndView mav = new ModelAndView("booking/booking_details");
 
         Booking booking = service.find(id);
 

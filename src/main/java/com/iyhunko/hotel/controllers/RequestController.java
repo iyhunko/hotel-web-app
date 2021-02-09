@@ -38,7 +38,7 @@ public class RequestController {
         model.addAttribute("reverseSortOrder", sortOrder.equalsIgnoreCase("asc") ? "desc" : "asc");
         model.addAttribute("pageUri", "requests");
 
-        return "requests";
+        return "request/requests";
     }
 
     @RequestMapping("/requests/create")
@@ -47,7 +47,7 @@ public class RequestController {
 
         model.addAttribute("request", room);
 
-        return "request_create";
+        return "request/request_create";
     }
 
     @RequestMapping(value = "/requests/save", method = RequestMethod.POST)
@@ -66,7 +66,7 @@ public class RequestController {
 
     @RequestMapping("/requests/{id}/edit")
     public ModelAndView showEditPage(@PathVariable(name = "id") Long id) {
-        ModelAndView mav = new ModelAndView("request_edit");
+        ModelAndView mav = new ModelAndView("request/request_edit");
 
         Request request = service.find(id);
 
@@ -79,7 +79,7 @@ public class RequestController {
     public ModelAndView showDetailsPage(
             @PathVariable(name = "id") Long id
     ) {
-        ModelAndView mav = new ModelAndView("request_details");
+        ModelAndView mav = new ModelAndView("request/request_details");
 
         Request request = service.find(id);
 

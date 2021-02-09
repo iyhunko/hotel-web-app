@@ -19,7 +19,7 @@ public class AuthController {
     public String showRegisterPage(Model model) {
         model.addAttribute("user", new User());
 
-        return "register";
+        return "auth/register";
     }
 
     @PostMapping("/register")
@@ -30,7 +30,7 @@ public class AuthController {
         user.setPassword(encodedPassword);
         repo.save(user);
 
-        return "register_success";
+        return "auth/register_success";
     }
 
     @GetMapping("/403")

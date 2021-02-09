@@ -49,7 +49,9 @@
                 <tr th:each="payment: ${payments}">
                     <td th:text="${payment.id}"></td>
                     <td>
-                        <a class="btn btn-secondary" th:href="@{'/bookings/' + ${payment.bookingId} + '/edit'}" th:text="${payment.bookingId}"></a>
+                        <a th:href="@{'/bookings/' + ${payment.bookingId} + '/edit'}">
+                            <i class="fa fa-fw fa-edit"></i><span th:text="${payment.bookingId}"></span>
+                        </a>
                     </td>
                     <td><span th:text="${#numbers.formatDecimal(payment.sum, 0, 0)}"></span>$</td>
                     <td th:text="${payment.currency}"></td>

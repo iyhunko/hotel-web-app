@@ -28,7 +28,7 @@
                         <a th:href="@{'/requests?sortBy=id&sortOrder=' + ${reverseSortOrder}}">ID</a>
                     </th>
                     <th>
-                        <a th:href="@{'/requests?sortBy=userId&sortOrder=' + ${reverseSortOrder}}">User ID</a>
+                        <a th:href="@{'/requests?sortBy=userId&sortOrder=' + ${reverseSortOrder}}">User</a>
                     </th>
                     <th>
                         <a th:href="@{'/requests?sortBy=priceFrom&sortOrder=' + ${reverseSortOrder}}">Price from</a>
@@ -60,7 +60,7 @@
                 <tbody>
                 <tr th:each="request: ${requests}">
                     <td th:text="${request.id}"></td>
-                    <td th:text="${request.userId}"></td>
+                    <td><a th:href="${ '/rooms/'+ request.user.id + '/details'}" th:text="${request.user.fullname}"></a></td>
                     <td><span th:text="${#numbers.formatDecimal(request.priceFrom, 0, 0)}"></span>$</td>
                     <td><span th:text="${#numbers.formatDecimal(request.priceTo, 0, 0)}"></span>$</td>
                     <td th:text="${#dates.format(request.checkinDate, 'yyyy-MM-dd')}"></td>

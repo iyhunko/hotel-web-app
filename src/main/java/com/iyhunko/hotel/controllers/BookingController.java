@@ -20,7 +20,6 @@ import java.util.Date;
 import java.util.List;
 
 @Controller
-@RequestMapping("/bookings")
 public class BookingController {
 
     @Autowired
@@ -30,6 +29,7 @@ public class BookingController {
 
     int PAGINATION_LIMIT = 5;
 
+    @GetMapping("/bookings")
     public String index(
             @RequestParam(value = "page", required = false, defaultValue = "1") int page,
             @RequestParam(value = "sortBy", required = false, defaultValue = "id") String sortBy,
@@ -50,7 +50,7 @@ public class BookingController {
         return "booking/bookings";
     }
 
-    @GetMapping("/create")
+    @GetMapping("/bookings/create")
     public String showCreatePage(Model model) {
         Booking booking = new Booking();
 
@@ -74,7 +74,7 @@ public class BookingController {
         return "redirect:/bookings";
     }
 
-    @GetMapping("/{id}/edit")
+    @GetMapping("/bookings/{id}/edit")
     public ModelAndView showEditPage(@PathVariable("id") Long id) {
         ModelAndView mav = new ModelAndView("booking/booking_edit");
 
@@ -86,7 +86,7 @@ public class BookingController {
         return mav;
     }
 
-    @GetMapping("/{id}/details")
+    @GetMapping("/bookings/{id}/details")
     public ModelAndView showDetailsPage(
             @PathVariable(name = "id") Long id
     ) {
@@ -99,7 +99,7 @@ public class BookingController {
         return mav;
     }
 
-    @GetMapping("/{id}/delete")
+    @GetMapping("/bookings/{id}/delete")
     public String delete(@PathVariable("id") Long id) {
         service.delete(id);
 

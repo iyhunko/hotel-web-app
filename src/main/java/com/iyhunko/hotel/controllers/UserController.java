@@ -4,12 +4,14 @@ import com.iyhunko.hotel.config.CustomUserDetails;
 import com.iyhunko.hotel.models.User;
 import com.iyhunko.hotel.services.PasswordEncoder;
 import com.iyhunko.hotel.services.UserService;
+import com.iyhunko.hotel.validators.UserValidator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -74,8 +76,14 @@ public class UserController {
 
     @RequestMapping(value = "/users/save", method = RequestMethod.POST)
     public String save(
-            @ModelAttribute("user") User user
+            @ModelAttribute("user") User user,
+            BindingResult results
     ) {
+        new UserValidator().validate(user, results);
+        if (results.hasErrors()) {
+            return "user/user_edit";
+        }
+
         service.save(user);
 
         return "redirect:/users";

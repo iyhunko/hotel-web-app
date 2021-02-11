@@ -27,8 +27,10 @@
                 <label class="col-form-label col-4" for="email">Email</label>
                 <div class="col-8">
                     <input type="text" class="form-control" th:field="*{email}" required
+                           th:classappend="${#fields.hasErrors('email') ? 'is-invalid' : ''}"
                            minlength="1" maxlength="45" id="email"
                     />
+                    <p th:if="${#fields.hasErrors('email')}" class="label text-danger" th:errors="*{email}"></p>
                 </div>
             </div>
 
@@ -36,8 +38,10 @@
                 <label class="col-form-label col-4" for="firstname">First name</label>
                 <div class="col-8">
                     <input type="text" class="form-control" th:field="*{firstname}" required
+                           th:classappend="${#fields.hasErrors('firstname') ? 'is-invalid' : ''}"
                            minlength="1" maxlength="30" id="firstname"
                     />
+                    <p th:if="${#fields.hasErrors('firstname')}" class="label text-danger" th:errors="*{firstname}"></p>
                 </div>
             </div>
 
@@ -45,8 +49,10 @@
                 <label class="col-form-label col-4" for="lastname">Last name</label>
                 <div class="col-8">
                     <input type="text" class="form-control" th:field="*{lastname}" required
+                           th:classappend="${#fields.hasErrors('lastname') ? 'is-invalid' : ''}"
                            minlength="1" maxlength="30" id="lastname"
                     />
+                    <p th:if="${#fields.hasErrors('lastname')}" class="label text-danger" th:errors="*{lastname}"></p>
                 </div>
             </div>
 
@@ -54,8 +60,10 @@
                 <label class="col-form-label col-4" for="phone">Phone</label>
                 <div class="col-8">
                     <input type="text" class="form-control" th:field="*{phone}" required
+                           th:classappend="${#fields.hasErrors('phone') ? 'is-invalid' : ''}"
                            minlength="1" maxlength="45" id="phone"
                     />
+                    <p th:if="${#fields.hasErrors('phone')}" class="label text-danger" th:errors="*{phone}"></p>
                 </div>
             </div>
 

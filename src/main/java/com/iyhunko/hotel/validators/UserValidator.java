@@ -15,15 +15,15 @@ public class UserValidator implements Validator {
         User user = (User) object;
 
         if (user.getEmail().equals("") || user.getEmail() == null) {
-            errors.rejectValue("email", "", "The email field cannot be empty.");
+            errors.rejectValue("email", "", "The email field can't be empty.");
         }
 
         if (user.getFirstname().equals("") || user.getFirstname() == null) {
-            errors.rejectValue("firstname", "", "The firstname field cannot be empty.");
+            errors.rejectValue("firstname", "", "The firstname field can't be empty.");
         }
 
         if (user.getLastname().equals("") || user.getLastname() == null) {
-            errors.rejectValue("lastname", "", "The lastname field cannot be empty.");
+            errors.rejectValue("lastname", "", "The lastname field can't be empty.");
         }
 
         if (user.getPhone() != null && user.getPhone().length() < 5) {

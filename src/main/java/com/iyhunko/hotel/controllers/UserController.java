@@ -4,6 +4,7 @@ import com.iyhunko.hotel.config.CustomUserDetails;
 import com.iyhunko.hotel.models.User;
 import com.iyhunko.hotel.services.PasswordEncoder;
 import com.iyhunko.hotel.services.UserService;
+import com.iyhunko.hotel.validators.UpdateProfileValidator;
 import com.iyhunko.hotel.validators.UserValidator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -15,6 +16,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.Map;
 
 @Controller
@@ -57,8 +59,15 @@ public class UserController {
     @RequestMapping(value = "/users/profile", method = RequestMethod.POST)
     public String updateProfile(
             @ModelAttribute("user") User user,
-            @AuthenticationPrincipal CustomUserDetails userDetails
+            @AuthenticationPrincipal CustomUserDetails userDetails,
+            HttpServletRequest request,
+            BindingResult results
     ) {
+        new UpdateProfileValidator().validate(request, results);
+        if (results.hasErrors()) {
+            return "user/profile";
+        }
+        System.out.println(request);
         // TODO: chek if password1 == password2 and return validation error
         // TODO: add validation for all fields
 

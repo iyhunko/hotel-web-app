@@ -1,33 +1,30 @@
 package com.iyhunko.hotel.controllers;
 
 import com.iyhunko.hotel.config.CustomUserDetails;
+import com.iyhunko.hotel.enums.BookingStatus;
 import com.iyhunko.hotel.models.Booking;
-import com.iyhunko.hotel.models.Request;
-import com.iyhunko.hotel.models.Room;
 import com.iyhunko.hotel.services.BookingService;
 import com.iyhunko.hotel.services.RoomService;
+import com.iyhunko.hotel.validators.SaveBookingValidator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
-import java.sql.Timestamp;
-import java.util.Arrays;
 import java.util.Date;
-import java.util.List;
 
 @Controller
 public class BookingController {
 
+    int PAGINATION_LIMIT = 5;
     @Autowired
     private BookingService service;
     @Autowired
     private RoomService roomService;
-
-    int PAGINATION_LIMIT = 5;
 
     @GetMapping("/bookings")
     public String index(
@@ -55,19 +52,28 @@ public class BookingController {
         Booking booking = new Booking();
 
         model.addAttribute("booking", booking);
+        model.addAttribute("booking", booking);
 
         return "booking/booking_create";
     }
 
-    @RequestMapping(value = "/save", method = RequestMethod.POST)
+    @RequestMapping(value = "/bookings/save", method = RequestMethod.POST)
     public String save(
             @ModelAttribute("booking") Booking booking,
-            @AuthenticationPrincipal CustomUserDetails currentUser
+            @AuthenticationPrincipal CustomUserDetails currentUser,
+            BindingResult results
     ) {
+        new SaveBookingValidator().validate(booking, results);
+        if (results.hasErrors()) {
+            return "booking/booking_edit";
+        }
+
         booking.setCheckinDate(new Date(System.currentTimeMillis()));
         booking.setCheckoutDate(new Date(System.currentTimeMillis()));
         booking.setUpdatedAt(new Date(System.currentTimeMillis()));
-        booking.setUserId(currentUser.getUser().getId());
+        if (booking.getUser() == null) {
+            booking.setUser(currentUser.getUser());
+        }
 
         service.save(booking);
 
@@ -81,7 +87,8 @@ public class BookingController {
         Booking booking = service.find(id);
 
         mav.addObject("booking", booking);
-        mav.addObject("rooms",  roomService.all());
+        mav.addObject("rooms", roomService.all());
+        mav.addObject("bookingStatuses", BookingStatus.values());
 
         return mav;
     }

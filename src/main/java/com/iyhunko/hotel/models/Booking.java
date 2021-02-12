@@ -1,5 +1,7 @@
 package com.iyhunko.hotel.models;
 
+import com.iyhunko.hotel.enums.BookingStatus;
+import com.iyhunko.hotel.enums.RoomStatus;
 import org.hibernate.annotations.CreationTimestamp;
 
 import javax.persistence.*;
@@ -12,9 +14,6 @@ public class Booking {
     @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
-    @Column(name = "user_id", insertable = false, updatable = false)
-    private Long userId;
 
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "user_id", referencedColumnName = "id")
@@ -44,11 +43,9 @@ public class Booking {
     @Column(name = "checkout_date")
     private Date checkoutDate;
 
-    /**
-     * TODO: use Enum instead of String here
-     */
+    @Enumerated(EnumType.STRING)
     @Column(name = "status")
-    private String status;
+    private BookingStatus status;
 
     @CreationTimestamp
     @Temporal(TemporalType.TIMESTAMP)
@@ -84,14 +81,6 @@ public class Booking {
         this.id = id;
     }
 
-    public Long getUserId() {
-        return userId;
-    }
-
-    public void setUserId(Long userId) {
-        this.userId = userId;
-    }
-
     public Long getPaymentId() {
         return paymentId;
     }
@@ -116,11 +105,11 @@ public class Booking {
         this.checkoutDate = checkoutDate;
     }
 
-    public String getStatus() {
+    public BookingStatus getStatus() {
         return status;
     }
 
-    public void setStatus(String status) {
+    public void setStatus(BookingStatus status) {
         this.status = status;
     }
 

@@ -1,9 +1,10 @@
 package com.iyhunko.hotel.models;
 
+import com.iyhunko.hotel.enums.PaymentStatus;
 import org.hibernate.annotations.CreationTimestamp;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
-import java.sql.Timestamp;
 import java.util.Date;
 
 @Entity
@@ -23,8 +24,17 @@ public class Payment {
         this.id = id;
     }
 
-    @Column(name = "booking_id")
-    private Long bookingId;
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "booking_id", referencedColumnName = "id")
+    private Booking booking;
+
+    public Booking getBooking() {
+        return booking;
+    }
+
+    public void setBooking(Booking booking) {
+        this.booking = booking;
+    }
 
     @Column(name = "sum")
     private Integer sum;
@@ -32,15 +42,14 @@ public class Payment {
     @Column(name = "currency")
     private String currency;
 
-    /**
-     * TODO: should be Enum
-     */
+    @Enumerated(EnumType.STRING)
     @Column(name = "status")
-    private String status;
+    private PaymentStatus status;
 
     @CreationTimestamp
     @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "expire_at")
+    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm")
     private Date expireAt;
 
     @CreationTimestamp
@@ -52,14 +61,6 @@ public class Payment {
     @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "created_at", updatable = false, nullable = false)
     private Date createdAt;
-
-    public Long getBookingId() {
-        return bookingId;
-    }
-
-    public void setBookingId(Long bookingId) {
-        this.bookingId = bookingId;
-    }
 
     public Integer getSum() {
         return sum;
@@ -77,11 +78,11 @@ public class Payment {
         this.currency = currency;
     }
 
-    public String getStatus() {
+    public PaymentStatus getStatus() {
         return status;
     }
 
-    public void setStatus(String status) {
+    public void setStatus(PaymentStatus status) {
         this.status = status;
     }
 

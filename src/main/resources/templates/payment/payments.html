@@ -49,8 +49,8 @@
                 <tr th:each="payment: ${payments}">
                     <td th:text="${payment.id}"></td>
                     <td>
-                        <a th:href="@{'/bookings/' + ${payment.bookingId} + '/edit'}">
-                            <i class="fa fa-fw fa-edit"></i><span th:text="${payment.bookingId}"></span>
+                        <a th:href="@{'/bookings/' + ${payment.booking.Id} + '/edit'}">
+                            <i class="fa fa-fw fa-edit"></i><span th:text="${payment.booking.Id}"></span>
                         </a>
                     </td>
                     <td><span th:text="${#numbers.formatDecimal(payment.sum, 0, 0)}"></span>$</td>

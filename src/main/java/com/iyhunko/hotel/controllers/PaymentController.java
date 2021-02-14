@@ -1,13 +1,14 @@
 package com.iyhunko.hotel.controllers;
 
-import com.iyhunko.hotel.config.CustomUserDetails;
+import com.iyhunko.hotel.enums.PaymentStatus;
 import com.iyhunko.hotel.models.Payment;
 import com.iyhunko.hotel.services.PaymentService;
+import com.iyhunko.hotel.validators.SavePaymentValidator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
-import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -53,12 +54,14 @@ public class PaymentController {
     @RequestMapping(value = "/payments/save", method = RequestMethod.POST)
     public String save(
             @ModelAttribute("payment") Payment payment,
-            @AuthenticationPrincipal CustomUserDetails currentUser
+            BindingResult results
     ) {
-        payment.setCreatedAt(new Timestamp(System.currentTimeMillis()));
+        new SavePaymentValidator().validate(payment, results);
+        if (results.hasErrors()) {
+            return "payment/payment_edit";
+        }
+
         payment.setUpdatedAt(new Timestamp(System.currentTimeMillis()));
-        payment.setExpireAt(new Timestamp(System.currentTimeMillis()));
-        payment.setStatus("created");
 
         service.save(payment);
 
@@ -72,6 +75,7 @@ public class PaymentController {
         Payment payment = service.find(id);
 
         mav.addObject("payment", payment);
+        mav.addObject("paymentStatuses", PaymentStatus.values());
 
         return mav;
     }

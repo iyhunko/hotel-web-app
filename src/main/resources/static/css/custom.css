@@ -35,3 +35,7 @@ tbody a {
 tbody a:hover {
     color: #3552e4;
 }
+
+.bg-wight a:hover {
+  color: black;
+}
